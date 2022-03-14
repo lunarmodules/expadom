@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><strong>expadom.class</strong></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>expadom.class</code></h1>
+<p>Class module.</p>
+<p>
+
+
+<p> method __init will be called upon instantiation</p>
+
+<p> single property:</p>
+
+<pre>
+readonly = boolean
+writeonly = boolean
+alias_to = <span class="global">string</span>  <span class="comment">--&gt; different prop name, if this is an alias. Alias will use
+</span>    its own get/set functions, but reads-from/writes-to other props location.
+set = <span class="keyword">function</span>(self, value) <span class="comment">-- return value to set or throws a HARD error
+</span>    self.__prop_values[prop_name] = value
+<span class="keyword">end</span>
+get = <span class="keyword">function</span>(self) <span class="comment">-- return the value or throws a HARD error
+</span>    <span class="keyword">return</span> self.__prop_values[prop_name]
+<span class="keyword">end</span>
+</pre>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Class.create">Class.create (name[, ancestor[, methods[, properties]]])</a></td>
+	<td class="summary">creates a new class.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Class.get_property_get">Class.get_property_get (class, name)</a></td>
+	<td class="summary">returns the property-getter function.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Class.get_property_set">Class.get_property_set (class, name)</a></td>
+	<td class="summary">returns the property-setter function.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Class.is_class">Class.is_class (tbl)</a></td>
+	<td class="summary">Is the table a "Class".</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Class.is_instance_of">Class.is_instance_of (class, instance)</a></td>
+	<td class="summary">Is the table an instance of the given class.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Class.is_readonly">Class.is_readonly (class, name)</a></td>
+	<td class="summary">returns whther the property is read-only.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Class.is_writeonly">Class.is_writeonly (class, name)</a></td>
+	<td class="summary">returns whther the property is write-only.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Class.set_property_get">Class.set_property_get (class, name, get)</a></td>
+	<td class="summary">sets the property-getter function for a property of a class.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Class.set_property_set">Class.set_property_set (class, name, set)</a></td>
+	<td class="summary">sets the property-setter function for a property of a class.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Class.create"></a>
+    <strong>Class.create (name[, ancestor[, methods[, properties]]])</strong>
+    </dt>
+    <dd>
+    creates a new class.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         name of the class. Will be stored in field <code>__classname</code>.
+        </li>
+        <li><span class="parameter">ancestor</span>
+            <span class="types"><span class="type">class</span></span>
+         the class to inherit from
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">methods</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         table with all methods (functions keyed by their name)
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">properties</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         table with properties (property tables as defined above, keyed by their name)
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new class
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Class.get_property_get"></a>
+    <strong>Class.get_property_get (class, name)</strong>
+    </dt>
+    <dd>
+    returns the property-getter function.
+ When overriding property-get functions in descendants, this can be used
+ to fetch the original function and call it.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">class</span>
+            <span class="types"><span class="type">class</span></span>
+         a class
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the property name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the property-get function
+    </ol>
+
+    <h3>Raises:</h3>
+    if class is not a class, or name is not a string
+
+
+
+</dd>
+    <dt>
+    <a name = "Class.get_property_set"></a>
+    <strong>Class.get_property_set (class, name)</strong>
+    </dt>
+    <dd>
+    returns the property-setter function.
+ When overriding property-set functions in descendants, this can be used
+ to fetch the original function and call it.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">class</span>
+            <span class="types"><span class="type">class</span></span>
+         a class
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the property name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the property-set function
+    </ol>
+
+    <h3>Raises:</h3>
+    if class is not a class, or name is not a string
+
+
+
+</dd>
+    <dt>
+    <a name = "Class.is_class"></a>
+    <strong>Class.is_class (tbl)</strong>
+    </dt>
+    <dd>
+    Is the table a "Class".
+ Checks whether a table is a class, not any speciifc type of class, just whether
+ it is a class from this class model/system.</p>
+
+<p> Since it also returns a message if not a class, it can be used in assertions.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tbl</span>
+         the table (or other types) to verify
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true if a class, or false+error otherwise
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Class.is_instance_of"></a>
+    <strong>Class.is_instance_of (class, instance)</strong>
+    </dt>
+    <dd>
+    Is the table an instance of the given class.
+ Since it also returns a message, it can be used in assertions.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">class</span>
+         the class
+        </li>
+        <li><span class="parameter">instance</span>
+         the instance to verify for being an instance of class-'class'
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true if it is an instance of the class, or false+error otherwise
+    </ol>
+
+    <h3>Raises:</h3>
+    if class is not a 'class'
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> Cat = Class(<span class="string">"Cat"</span>)
+<span class="keyword">local</span> sylvester = Cat {name = <span class="string">"Sylvester"</span>}
+<span class="global">assert</span>(Class.is_instance_of(Cat, sylvester))</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Class.is_readonly"></a>
+    <strong>Class.is_readonly (class, name)</strong>
+    </dt>
+    <dd>
+    returns whther the property is read-only.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">class</span>
+            <span class="types"><span class="type">class</span></span>
+         a class
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the property name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+    <h3>Raises:</h3>
+    if class is not a class, or name is not a string
+
+
+
+</dd>
+    <dt>
+    <a name = "Class.is_writeonly"></a>
+    <strong>Class.is_writeonly (class, name)</strong>
+    </dt>
+    <dd>
+    returns whther the property is write-only.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">class</span>
+            <span class="types"><span class="type">class</span></span>
+         a class
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the property name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+    <h3>Raises:</h3>
+    if class is not a class, or name is not a string
+
+
+
+</dd>
+    <dt>
+    <a name = "Class.set_property_get"></a>
+    <strong>Class.set_property_get (class, name, get)</strong>
+    </dt>
+    <dd>
+    sets the property-getter function for a property of a class.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">class</span>
+            <span class="types"><span class="type">class</span></span>
+         a class
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the property name
+        </li>
+        <li><span class="parameter">get</span>
+            <span class="types"><span class="type">function</span></span>
+         the property getter function
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true on success, nil+err if no property by that name exists
+    </ol>
+
+    <h3>Raises:</h3>
+    if <a href="../modules/expadom.class.html">class</a> is not a class, <code>name</code> is not a string, or <code>get</code> is not a function
+
+
+
+</dd>
+    <dt>
+    <a name = "Class.set_property_set"></a>
+    <strong>Class.set_property_set (class, name, set)</strong>
+    </dt>
+    <dd>
+    sets the property-setter function for a property of a class.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">class</span>
+            <span class="types"><span class="type">class</span></span>
+         a class
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the property name
+        </li>
+        <li><span class="parameter">set</span>
+            <span class="types"><span class="type">function</span></span>
+         the property setter function
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true on success, nil+err if no property by that name exists
+    </ol>
+
+    <h3>Raises:</h3>
+    if <a href="../modules/expadom.class.html">class</a> is not a class, <code>name</code> is not a string, or <code>set</code> is not a function
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

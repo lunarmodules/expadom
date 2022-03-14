@@ -1,0 +1,4 @@
+modules = {
+   ["expadom"] = "src/expadom/init.lua",
+   ["expadom.*"] = "src"
+}

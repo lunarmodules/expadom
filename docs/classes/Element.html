@@ -1,0 +1,678 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><strong>Element</strong></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Element</code></h1>
+<p>XML DOM Element Interface.</p>
+<p> See the <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-745549614">Element</a>
+ and <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1950641247">Node</a> interfaces.</p>
+
+
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Element.properties">Element.properties</a></td>
+	<td class="summary">Properties of the <a href="../classes/Element.html#">Element</a> class, beyond the <a href="../classes/Node.html#">Node</a> class</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Element:getAttribute">Element:getAttribute (name)</a></td>
+	<td class="summary">Gets a plain <a href="../classes/Attribute.html#">Attribute</a> value by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-666EE0F9">getAttribute</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:getAttributeNS">Element:getAttributeNS (namespaceURI, localName)</a></td>
+	<td class="summary">Gets a namespaced <a href="../classes/Attribute.html#">Attribute</a> value by namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElGetAttrNS">getAttributeNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:getAttributeNode">Element:getAttributeNode (name)</a></td>
+	<td class="summary">Gets a plain <a href="../classes/Attribute.html#">Attribute</a> node by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-217A91B8">getAttributeNode</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:getAttributeNodeNS">Element:getAttributeNodeNS (namespaceURI, localName)</a></td>
+	<td class="summary">Gets a namespaced <a href="../classes/Attribute.html#">Attribute</a> node by namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElGetAtNodeNS">getAttributeNodeNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:getElementsByTagName">Element:getElementsByTagName (name)</a></td>
+	<td class="summary">Returns a list of children matching the name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1938918D">getElementsByTagName</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:getElementsByTagNameNS">Element:getElementsByTagNameNS (namespaceURI, localName)</a></td>
+	<td class="summary">Returns a list of children matching the namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-A6C90942">getElementsByTagNameNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:hasAttribute">Element:hasAttribute (name)</a></td>
+	<td class="summary">Checks existence of an <a href="../classes/Attribute.html#">Attribute</a> node by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-6D6AC0F9">hasAttribute</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:hasAttributeNS">Element:hasAttributeNS (namespaceURI, localName)</a></td>
+	<td class="summary">Checks existence of an <a href="../classes/Attribute.html#">Attribute</a> node by namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElRemAtNS">hasAttributeNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:removeAttribute">Element:removeAttribute (name)</a></td>
+	<td class="summary">Removes a plain <a href="../classes/Attribute.html#">Attribute</a> node by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-6D6AC0F9">removeAttribute</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:removeAttributeNS">Element:removeAttributeNS (namespaceURI, localName)</a></td>
+	<td class="summary">Removes a namespaced <a href="../classes/Attribute.html#">Attribute</a> node by namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElRemAtNS">removeAttributeNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:removeAttributeNode">Element:removeAttributeNode (oldAttr)</a></td>
+	<td class="summary">Removes an <a href="../classes/Attribute.html#">Attribute</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-D589198">removeAttributeNode</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:setAttribute">Element:setAttribute (name, value)</a></td>
+	<td class="summary">Creates or modifies a plain <a href="../classes/Attribute.html#">Attribute</a> node on the Element, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-F68F082">setAttribute</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:setAttributeNS">Element:setAttributeNS (namespaceURI, qualifiedName, value)</a></td>
+	<td class="summary">Creates or modifies a namespaced <a href="../classes/Attribute.html#">Attribute</a> node on the Element, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElSetAttrNS">setAttributeNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:setAttributeNode">Element:setAttributeNode (newAttr)</a></td>
+	<td class="summary">Adds or replaces a plain <a href="../classes/Attribute.html#">Attribute</a> node on the Element, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-887236154">setAttributeNode</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:setAttributeNodeNS">Element:setAttributeNodeNS (newAttr)</a></td>
+	<td class="summary">Adds or replaces a namespaced <a href="../classes/Attribute.html#">Attribute</a> node on the Element, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElSetAtNodeNS">setAttributeNodeNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Element:write">Element:write (buffer, namespacesInScope)</a></td>
+	<td class="summary">exports the XML.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Element.properties"></a>
+    <strong>Element.properties</strong>
+    </dt>
+    <dd>
+    Properties of the <a href="../classes/Element.html#">Element</a> class, beyond the <a href="../classes/Node.html#">Node</a> class
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">tagName</span>
+         (string) the tag name for the element (readonly)
+        </li>
+        <li><span class="parameter">explicitNamespaces</span>
+         (table) a table holding namespace-URIs indexed by prefix
+ (or <code>constants.DEFAULT_NS_KEY</code> for the default namespace). This is additional to the
+ DOM2 spec, and will be used when calling <a href="../classes/Element.html#Element:write">write</a>.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Element:getAttribute"></a>
+    <strong>Element:getAttribute (name)</strong>
+    </dt>
+    <dd>
+    Gets a plain <a href="../classes/Attribute.html#">Attribute</a> value by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-666EE0F9">getAttribute</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> name to lookup
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        value of the attribute, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:getAttributeNS"></a>
+    <strong>Element:getAttributeNS (namespaceURI, localName)</strong>
+    </dt>
+    <dd>
+    Gets a namespaced <a href="../classes/Attribute.html#">Attribute</a> value by namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElGetAttrNS">getAttributeNS</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> namespace URI to lookup
+        </li>
+        <li><span class="parameter">localName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> localname to lookup
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        value of the attribute, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:getAttributeNode"></a>
+    <strong>Element:getAttributeNode (name)</strong>
+    </dt>
+    <dd>
+    Gets a plain <a href="../classes/Attribute.html#">Attribute</a> node by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-217A91B8">getAttributeNode</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> name to lookup
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the <a href="../classes/Attribute.html#">Attribute</a> node, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:getAttributeNodeNS"></a>
+    <strong>Element:getAttributeNodeNS (namespaceURI, localName)</strong>
+    </dt>
+    <dd>
+    Gets a namespaced <a href="../classes/Attribute.html#">Attribute</a> node by namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElGetAtNodeNS">getAttributeNodeNS</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> namespace URI to lookup
+        </li>
+        <li><span class="parameter">localName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> localname to lookup
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the <a href="../classes/Attribute.html#">Attribute</a> node, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:getElementsByTagName"></a>
+    <strong>Element:getElementsByTagName (name)</strong>
+    </dt>
+    <dd>
+    Returns a list of children matching the name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1938918D">getElementsByTagName</a>.
+ The search is done recursively over the full depth, in a preorder traversal,
+ and this will be the order of the elements in the returned <a href="../classes/NodeList.html#">NodeList</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Element.html#">Element</a> tag name to search for, or <code>&quot;*&quot;</code> to match all.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <a href="../classes/NodeList.html#">NodeList</a> with children with the requested name.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:getElementsByTagNameNS"></a>
+    <strong>Element:getElementsByTagNameNS (namespaceURI, localName)</strong>
+    </dt>
+    <dd>
+    Returns a list of children matching the namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-A6C90942">getElementsByTagNameNS</a>.
+ The search is done recursively over the full depth, in a preorder traversal,
+ and this will be the order of the elements in the returned <a href="../classes/NodeList.html#">NodeList</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Element.html#">Element</a> namespace URI to search for, or <code>&quot;*&quot;</code> to match all.
+        </li>
+        <li><span class="parameter">localName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Element.html#">Element</a> localname to search for, or <code>&quot;*&quot;</code> to match all.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <a href="../classes/NodeList.html#">NodeList</a> with children with the requested namespace.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:hasAttribute"></a>
+    <strong>Element:hasAttribute (name)</strong>
+    </dt>
+    <dd>
+    Checks existence of an <a href="../classes/Attribute.html#">Attribute</a> node by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-6D6AC0F9">hasAttribute</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> name to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:hasAttributeNS"></a>
+    <strong>Element:hasAttributeNS (namespaceURI, localName)</strong>
+    </dt>
+    <dd>
+    Checks existence of an <a href="../classes/Attribute.html#">Attribute</a> node by namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElRemAtNS">hasAttributeNS</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> namespace URI to check
+        </li>
+        <li><span class="parameter">localName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> localname to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:removeAttribute"></a>
+    <strong>Element:removeAttribute (name)</strong>
+    </dt>
+    <dd>
+    Removes a plain <a href="../classes/Attribute.html#">Attribute</a> node by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-6D6AC0F9">removeAttribute</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> name to remove
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code>, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:removeAttributeNS"></a>
+    <strong>Element:removeAttributeNS (namespaceURI, localName)</strong>
+    </dt>
+    <dd>
+    Removes a namespaced <a href="../classes/Attribute.html#">Attribute</a> node by namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElRemAtNS">removeAttributeNS</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> namespace URI to remove
+        </li>
+        <li><span class="parameter">localName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> localname to remove
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code>, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:removeAttributeNode"></a>
+    <strong>Element:removeAttributeNode (oldAttr)</strong>
+    </dt>
+    <dd>
+    Removes an <a href="../classes/Attribute.html#">Attribute</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-D589198">removeAttributeNode</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">oldAttr</span>
+            <span class="types"><a class="type" href="../classes/Attribute.html#">Attribute</a></span>
+         the <a href="../classes/Attribute.html#">Attribute</a> node to remove
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the removed <a href="../classes/Attribute.html#">Attribute</a> node, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:setAttribute"></a>
+    <strong>Element:setAttribute (name, value)</strong>
+    </dt>
+    <dd>
+    Creates or modifies a plain <a href="../classes/Attribute.html#">Attribute</a> node on the Element, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-F68F082">setAttribute</a>.
+ If the <a href="../classes/Attribute.html#">Attribute</a> doesn't exist yet on the <a href="../classes/Element.html#">Element</a>, it will be created.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         attribute name.
+        </li>
+        <li><span class="parameter">value</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         attribute value.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        created/updated <a href="../classes/Attribute.html#">Attribute</a> node (this differs from the DOM2 spec)
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:setAttributeNS"></a>
+    <strong>Element:setAttributeNS (namespaceURI, qualifiedName, value)</strong>
+    </dt>
+    <dd>
+    Creates or modifies a namespaced <a href="../classes/Attribute.html#">Attribute</a> node on the Element, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElSetAttrNS">setAttributeNS</a>.
+ If the <a href="../classes/Attribute.html#">Attribute</a> doesn't exist yet on the <a href="../classes/Element.html#">Element</a>, it will be created.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the namespaceURI for the Attribute.
+        </li>
+        <li><span class="parameter">qualifiedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the qualified attribute name.
+        </li>
+        <li><span class="parameter">value</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         attribute value.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        created/updated <a href="../classes/Attribute.html#">Attribute</a> node (this differs from the DOM2 spec)
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:setAttributeNode"></a>
+    <strong>Element:setAttributeNode (newAttr)</strong>
+    </dt>
+    <dd>
+    Adds or replaces a plain <a href="../classes/Attribute.html#">Attribute</a> node on the Element, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-887236154">setAttributeNode</a>.
+ If an <a href="../classes/Attribute.html#">Attribute</a> by this name already exists on the <a href="../classes/Element.html#">Element</a>, it will be replaced.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newAttr</span>
+            <span class="types"><a class="type" href="../classes/Attribute.html#">Attribute</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> node to add
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> or the replaced <a href="../classes/Attribute.html#">Attribute</a> node, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:setAttributeNodeNS"></a>
+    <strong>Element:setAttributeNodeNS (newAttr)</strong>
+    </dt>
+    <dd>
+    Adds or replaces a namespaced <a href="../classes/Attribute.html#">Attribute</a> node on the Element, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-ElSetAtNodeNS">setAttributeNodeNS</a>.
+ If an <a href="../classes/Attribute.html#">Attribute</a> by this name already exists on the <a href="../classes/Element.html#">Element</a>, it will be replaced.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newAttr</span>
+            <span class="types"><a class="type" href="../classes/Attribute.html#">Attribute</a></span>
+         <a href="../classes/Attribute.html#">Attribute</a> node to add
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> or the replaced <a href="../classes/Attribute.html#">Attribute</a> node, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Element:write"></a>
+    <strong>Element:write (buffer, namespacesInScope)</strong>
+    </dt>
+    <dd>
+
+<p>exports the XML. </p>
+
+<p> Writing namespaces:</p>
+
+<ul>
+    <li><p>Namespaces set in the <code>namespacesInScope</code> table will be assumed to have already
+    been defined and no declarations for those will be generated.</p></li>
+    <li><p>Namespaces in use in this <a href="../classes/Element.html#">Element</a> or any of its <a href="../classes/Attribute.html#">Attribute</a>s will implicitly
+    be defined on the <a href="../classes/Element.html#">Element</a> unless they are already in scope.</p></li>
+    <li><p>Namespaces set in the <code>Element.explicitNamespaces</code> table will be defined on this
+    <a href="../classes/Element.html#">Element</a> (if not already in scope). This allows to define a namespace on
+    a higher level element (where it is not necessarily in use), to prevent many
+    duplicate definitions further down the tree.</p></li>
+</ul>
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">buffer</span>
+            <span class="types"><span class="type">array</span></span>
+         an array to which the chunks can be added.
+        </li>
+        <li><span class="parameter">namespacesInScope</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         list of namespace URIs indexed by prefix
+ (or <code>constants.DEFAULT_NS_KEY</code> for the default namespace).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the buffer array
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

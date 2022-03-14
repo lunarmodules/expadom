@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><strong>expadom.xmlutils</strong></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>expadom.xmlutils</code></h1>
+<p>XML utility functions</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#escape">escape (str)</a></td>
+	<td class="summary">Escapes a string for safe use in xml.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#qualifiedname">qualifiedname (localname, prefix)</a></td>
+	<td class="summary">creates a qualified name (without validation).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#split_name">split_name (name)</a></td>
+	<td class="summary">splits a (qualified) name in a prefix + localname (without validation).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#validate_name">validate_name (name)</a></td>
+	<td class="summary">validates a non-qualified name.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#validate_prefix">validate_prefix (name)</a></td>
+	<td class="summary">validates a prefix.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#validate_qualifiedName_and_uri">validate_qualifiedName_and_uri (qualifiedName, namespaceURI)</a></td>
+	<td class="summary">validates a qualified name and its URI.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#validate_qualifiedname">validate_qualifiedname (qualifiedName)</a></td>
+	<td class="summary">validates a qualified name.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#utf8">utf8</a></td>
+	<td class="summary">Library for UTF-8 support.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "escape"></a>
+    <strong>escape (str)</strong>
+    </dt>
+    <dd>
+    Escapes a string for safe use in xml.
+ Handles quotes(single+double), less-than, greater-than, and ampersand.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">str</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         string value to escape
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        escaped string
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> esc = xml.xml_escape(<span class="string">[["'&lt;&gt;&amp;]]</span>)  <span class="comment">--&gt; "&amp;quot;&amp;apos;&amp;lt;&amp;gt;&amp;amp;"</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "qualifiedname"></a>
+    <strong>qualifiedname (localname, prefix)</strong>
+    </dt>
+    <dd>
+    creates a qualified name (without validation).
+ if prefix is either empty or nil, the prefix is omitted
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">localname</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the localname
+        </li>
+        <li><span class="parameter">prefix</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">nil</span></span>
+         the prefix
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> qualified = qualifiedname(<span class="string">"orange"</span>, <span class="string">"clr"</span>)  <span class="comment">--&gt; "clr:orange"
+</span><span class="keyword">local</span> qualified = qualifiedname(<span class="string">"orange"</span>, <span class="string">""</span>)     <span class="comment">--&gt; "orange"
+</span><span class="keyword">local</span> qualified = qualifiedname(<span class="string">"orange"</span>)         <span class="comment">--&gt; "orange"</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "split_name"></a>
+    <strong>split_name (name)</strong>
+    </dt>
+    <dd>
+    splits a (qualified) name in a prefix + localname (without validation).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the tag/attribute name, with or without namespace prefix
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        localname, prefix. Prefix will be 'nil' if there was none
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> name, prefix = split_name(<span class="string">"clr:orange"</span>)  <span class="comment">--&gt; "orange", "clr"
+</span><span class="keyword">local</span> name, prefix = split_name(<span class="string">"orange"</span>)      <span class="comment">--&gt; "orange", nil</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "validate_name"></a>
+    <strong>validate_name (name)</strong>
+    </dt>
+    <dd>
+    validates a non-qualified name.
+ must be a string, at least 1 character
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the tag/attribute name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        name, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "validate_prefix"></a>
+    <strong>validate_prefix (name)</strong>
+    </dt>
+    <dd>
+    validates a prefix.
+ must be a string, can be 0 length
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the prefix name
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        name or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "validate_qualifiedName_and_uri"></a>
+    <strong>validate_qualifiedName_and_uri (qualifiedName, namespaceURI)</strong>
+    </dt>
+    <dd>
+    validates a qualified name and its URI.
+ namespaceURI can be nil, if there is no prefix in the qualified name. If the prefix
+ is <code>xml</code> then the namespace must be <code>http://www.w3.org/XML/1998/namespace</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">qualifiedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the tag/attribute name, with or without namespace prefix
+        </li>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">nil</span></span>
+         the namespace uri
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        localname, prefix, uri, or nil+err. Prefix will be 'nil' if there was none.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "validate_qualifiedname"></a>
+    <strong>validate_qualifiedname (qualifiedName)</strong>
+    </dt>
+    <dd>
+    validates a qualified name.
+ must be a string, localname and prefix at least 1 character
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">qualifiedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the tag/attribute name, with or without namespace prefix
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        localname, prefix. Prefix will be 'nil' if there was none.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "utf8"></a>
+    <strong>utf8</strong>
+    </dt>
+    <dd>
+    Library for UTF-8 support.
+ This is either the stock Lua lib, on Lua 5.3 or higher. Or the one from
+ the Lua 5.3 compatibility module; "compat53.utf8".
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

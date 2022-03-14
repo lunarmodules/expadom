@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><strong>NamedNodeMap</strong></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>NamedNodeMap</code></h1>
+<p>XML DOM NamedNodeMap class.</p>
+<p> Index is kept in array part of the object, names in a separate table.</p>
+
+<p> Note: the <a href="../classes/NamedNodeMap.html#NamedNodeMap:item">item</a> method returns based on 1-indexed!</p>
+
+<p> Use the methods only to change, to keep the two in-sync. For faster iteration
+ use the Lua-array.</p>
+
+<p> This class is used for the <code>attributes</code> property of an <a href="../classes/Element.html#">Element</a> node. As well
+ as for 'entities' and 'notations' properties on the <a href="../classes/DocumentType.html#">DocumentType</a> node.</p>
+
+<p> See the <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1780488922">NamedNodeMap</a>
+ interface.</p>
+
+
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#NamedNodeMap.properties">NamedNodeMap.properties</a></td>
+	<td class="summary">Properties of the <a href="../classes/NamedNodeMap.html#">NamedNodeMap</a> class</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#NamedNodeMap:getNamedItem">NamedNodeMap:getNamedItem (name)</a></td>
+	<td class="summary">Returns an item by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1074577549">getNamedItem</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#NamedNodeMap:getNamedItemNS">NamedNodeMap:getNamedItemNS (namespaceURI, name)</a></td>
+	<td class="summary">Returns an item by name and namespaceURI, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-getNamedItemNS">getNamedItem</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#NamedNodeMap:item">NamedNodeMap:item (idx)</a></td>
+	<td class="summary">Returns item by index, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-349467F9">item</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#NamedNodeMap:removeNamedItem">NamedNodeMap:removeNamedItem (name)</a></td>
+	<td class="summary">Removes an item by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-D58B193">removeNamedItem</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#NamedNodeMap:removeNamedItemNS">NamedNodeMap:removeNamedItemNS (namespaceURI, name)</a></td>
+	<td class="summary">Removes an item by name and namespaceURI, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-removeNamedItemNS">removeNamedItemNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#NamedNodeMap:removeNamedItemNS">NamedNodeMap:removeNamedItemNS (arg)</a></td>
+	<td class="summary">Removes an item by name and namespaceURI, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-removeNamedItemNS">removeNamedItemNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#NamedNodeMap:setNamedItem">NamedNodeMap:setNamedItem (arg)</a></td>
+	<td class="summary">Sets an item by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-D58B193">removeNamedItem</a>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "NamedNodeMap.properties"></a>
+    <strong>NamedNodeMap.properties</strong>
+    </dt>
+    <dd>
+    Properties of the <a href="../classes/NamedNodeMap.html#">NamedNodeMap</a> class
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">length</span>
+         the number of items in the <a href="../classes/NamedNodeMap.html#">NamedNodeMap</a> (readonly)
+        </li>
+        <li><span class="parameter">parentNode</span>
+         the parent <a href="../classes/Node.html#">Node</a> to which this <a href="../classes/NamedNodeMap.html#">NamedNodeMap</a> belongs, additional to the DOM2 spec (readonly)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "NamedNodeMap:getNamedItem"></a>
+    <strong>NamedNodeMap:getNamedItem (name)</strong>
+    </dt>
+    <dd>
+    Returns an item by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1074577549">getNamedItem</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the name of the item to return
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the item, nil if not found
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "NamedNodeMap:getNamedItemNS"></a>
+    <strong>NamedNodeMap:getNamedItemNS (namespaceURI, name)</strong>
+    </dt>
+    <dd>
+    Returns an item by name and namespaceURI, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-getNamedItemNS">getNamedItem</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the namespace URI of the item to return
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the local name of the item to return
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the item, nil if not found
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "NamedNodeMap:item"></a>
+    <strong>NamedNodeMap:item (idx)</strong>
+    </dt>
+    <dd>
+    Returns item by index, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-349467F9">item</a>.
+ Indices 1-indexed.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">int</span></span>
+         index of item to return
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the item, nil if not found
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "NamedNodeMap:removeNamedItem"></a>
+    <strong>NamedNodeMap:removeNamedItem (name)</strong>
+    </dt>
+    <dd>
+    Removes an item by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-D58B193">removeNamedItem</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the name of the item to return
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the item, nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "NamedNodeMap:removeNamedItemNS"></a>
+    <strong>NamedNodeMap:removeNamedItemNS (namespaceURI, name)</strong>
+    </dt>
+    <dd>
+    Removes an item by name and namespaceURI, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-removeNamedItemNS">removeNamedItemNS</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the namespace URI of the item to remove
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the local name of the item to remove
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the removed item, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "NamedNodeMap:removeNamedItemNS"></a>
+    <strong>NamedNodeMap:removeNamedItemNS (arg)</strong>
+    </dt>
+    <dd>
+    Removes an item by name and namespaceURI, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-removeNamedItemNS">removeNamedItemNS</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">arg</span>
+            <span class="types"><a class="type" href="../classes/Attribute.html#">Attribute</a>, <span class="type">Entity</span> or <span class="type">Notation</span></span>
+         the object to store
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the existing item or <code>true</code> if there was none, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "NamedNodeMap:setNamedItem"></a>
+    <strong>NamedNodeMap:setNamedItem (arg)</strong>
+    </dt>
+    <dd>
+    Sets an item by name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-D58B193">removeNamedItem</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">arg</span>
+            <span class="types"><a class="type" href="../classes/Attribute.html#">Attribute</a>, <span class="type">Entity</span> or <span class="type">Notation</span></span>
+         the object to store
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the existing item or <code>true</code> if there was none, or nil+err
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

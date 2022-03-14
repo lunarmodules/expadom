@@ -1,0 +1,620 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><strong>Document</strong></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Document</code></h1>
+<p>XML DOM Document Interface.</p>
+<p> See the <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-i-Document">Document</a>
+ and <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1950641247">Node</a> interfaces.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Node:importNode">Node:importNode (importedNode, deep)</a></td>
+	<td class="summary">Not implemented.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Document.properties">Document.properties</a></td>
+	<td class="summary">Properties of the <a href="../classes/Document.html#">Document</a> class, beyond the <a href="../classes/Node.html#">Node</a> class</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Document:createAttribute">Document:createAttribute (name)</a></td>
+	<td class="summary">Creates a plain <a href="../classes/Attribute.html#">Attribute</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1084891198">createAttribute</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createAttributeNS">Document:createAttributeNS (namespaceURI, qualifiedName)</a></td>
+	<td class="summary">Creates a namespaced <a href="../classes/Attribute.html#">Attribute</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-DocCrAttrNS">createAttributeNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createCDATASection">Document:createCDATASection (data)</a></td>
+	<td class="summary">Creates a <a href="../classes/CDATASection.html#">CDATASection</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-D26C0AF8">createCDATASection</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createComment">Document:createComment (data)</a></td>
+	<td class="summary">Creates a <a href="../classes/Comment.html#">Comment</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1334481328">createComment</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createDocumentFragment">Document:createDocumentFragment ()</a></td>
+	<td class="summary">Creates a <a href="../classes/DocumentFragment.html#">DocumentFragment</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-35CB04B5">createDocumentFragment</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createElement">Document:createElement (tagName)</a></td>
+	<td class="summary">Creates a <a href="../classes/Element.html#">Element</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-2141741547">createElement</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createElementNS">Document:createElementNS (namespaceURI, qualifiedName)</a></td>
+	<td class="summary">Creates a namespaced <a href="../classes/Element.html#">Element</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-DocCrElNS">createElementNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createEntityReference">Document:createEntityReference (name)</a></td>
+	<td class="summary">Not implemeneted.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createProcessingInstruction">Document:createProcessingInstruction (target, data)</a></td>
+	<td class="summary">Creates a <a href="../classes/ProcessingInstruction.html#">ProcessingInstruction</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-135944439">createProcessingInstruction</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:createTextNode">Document:createTextNode (data)</a></td>
+	<td class="summary">Creates a <a href="../classes/Text.html#">Text</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1975348127">createTextNode</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:getElementById">Document:getElementById (elementId)</a></td>
+	<td class="summary">Not implemented.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:getElementsByTagName">Document:getElementsByTagName (name)</a></td>
+	<td class="summary">Returns a list of children matching the name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-A6C9094">getElementsByTagName</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:getElementsByTagNameNS">Document:getElementsByTagNameNS (namespaceURI, localName)</a></td>
+	<td class="summary">Returns a list of children matching the namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-getElBTNNS">getElementsByTagNameNS</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:write">Document:write ([buffer[, namespacesInScope]])</a></td>
+	<td class="summary">exports the XML.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Node:importNode"></a>
+    <strong>Node:importNode (importedNode, deep)</strong>
+    </dt>
+    <dd>
+    Not implemented.  Clones and imports the node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Core-Document-importNode">importNode</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">importedNode</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the <a href="../classes/Node.html#">Node</a> to import from another <a href="../classes/Document.html#">Document</a>.
+        </li>
+        <li><span class="parameter">deep</span>
+            <span class="types"><span class="type">bool</span></span>
+         if <code>true</code> create a recursive copy.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the newly cloned and imported <a href="../classes/Node.html#">Node</a>, or nil+err
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Document.properties"></a>
+    <strong>Document.properties</strong>
+    </dt>
+    <dd>
+    Properties of the <a href="../classes/Document.html#">Document</a> class, beyond the <a href="../classes/Node.html#">Node</a> class
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">doctype</span>
+         the <a href="../classes/DocumentType.html#">DocumentType</a> associated with this Document (readonly)
+        </li>
+        <li><span class="parameter">implementation</span>
+         the <a href="../classes/DOMImplementation.html#">DOMImplementation</a> from which the Document was created (readonly)
+        </li>
+        <li><span class="parameter">documentElement</span>
+         the root <a href="../classes/Element.html#">Element</a> object of the Document (readonly)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Document:createAttribute"></a>
+    <strong>Document:createAttribute (name)</strong>
+    </dt>
+    <dd>
+    Creates a plain <a href="../classes/Attribute.html#">Attribute</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1084891198">createAttribute</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         attribute name.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/Attribute.html#">Attribute</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createAttributeNS"></a>
+    <strong>Document:createAttributeNS (namespaceURI, qualifiedName)</strong>
+    </dt>
+    <dd>
+    Creates a namespaced <a href="../classes/Attribute.html#">Attribute</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-DocCrAttrNS">createAttributeNS</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the namespaceURI for the Attribute.
+        </li>
+        <li><span class="parameter">qualifiedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the qualified attribute name.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/Attribute.html#">Attribute</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createCDATASection"></a>
+    <strong>Document:createCDATASection (data)</strong>
+    </dt>
+    <dd>
+    Creates a <a href="../classes/CDATASection.html#">CDATASection</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-D26C0AF8">createCDATASection</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the CData contents.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/CDATASection.html#">CDATASection</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createComment"></a>
+    <strong>Document:createComment (data)</strong>
+    </dt>
+    <dd>
+    Creates a <a href="../classes/Comment.html#">Comment</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1334481328">createComment</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the comment.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/Comment.html#">Comment</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createDocumentFragment"></a>
+    <strong>Document:createDocumentFragment ()</strong>
+    </dt>
+    <dd>
+    Creates a <a href="../classes/DocumentFragment.html#">DocumentFragment</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-35CB04B5">createDocumentFragment</a>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/DocumentFragment.html#">DocumentFragment</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createElement"></a>
+    <strong>Document:createElement (tagName)</strong>
+    </dt>
+    <dd>
+    Creates a <a href="../classes/Element.html#">Element</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-2141741547">createElement</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tagName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the tagname for the new <a href="../classes/Element.html#">Element</a>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/Element.html#">Element</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createElementNS"></a>
+    <strong>Document:createElementNS (namespaceURI, qualifiedName)</strong>
+    </dt>
+    <dd>
+    Creates a namespaced <a href="../classes/Element.html#">Element</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-DocCrElNS">createElementNS</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the namespaceURI for the Element.
+        </li>
+        <li><span class="parameter">qualifiedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the qualified element name.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/Element.html#">Element</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createEntityReference"></a>
+    <strong>Document:createEntityReference (name)</strong>
+    </dt>
+    <dd>
+    Not implemeneted.  Creates a <code>EntityReference</code> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-392B75AE">createEntityReference</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the entity reference name.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <code>EntityReference</code> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createProcessingInstruction"></a>
+    <strong>Document:createProcessingInstruction (target, data)</strong>
+    </dt>
+    <dd>
+    Creates a <a href="../classes/ProcessingInstruction.html#">ProcessingInstruction</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-135944439">createProcessingInstruction</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the target for the instruction.
+        </li>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the instruction.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/ProcessingInstruction.html#">ProcessingInstruction</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:createTextNode"></a>
+    <strong>Document:createTextNode (data)</strong>
+    </dt>
+    <dd>
+    Creates a <a href="../classes/Text.html#">Text</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1975348127">createTextNode</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the contents of the new <a href="../classes/Text.html#">Text</a> node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <a href="../classes/Text.html#">Text</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:getElementById"></a>
+    <strong>Document:getElementById (elementId)</strong>
+    </dt>
+    <dd>
+    Not implemented.  Returns a child matching the name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-getElBId">getElementById</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">elementId</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the <code>id</code> value to search for.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the matching <a href="../classes/Element.html#">Element</a> node
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:getElementsByTagName"></a>
+    <strong>Document:getElementsByTagName (name)</strong>
+    </dt>
+    <dd>
+    Returns a list of children matching the name, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-A6C9094">getElementsByTagName</a>.
+ The search is done recursively over the full depth, in a preorder traversal,
+ and this will be the order of the elements in the returned <a href="../classes/NodeList.html#">NodeList</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Element.html#">Element</a> tag name to search for, or <code>&quot;*&quot;</code> to match all.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <a href="../classes/NodeList.html#">NodeList</a> with children with the requested name.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:getElementsByTagNameNS"></a>
+    <strong>Document:getElementsByTagNameNS (namespaceURI, localName)</strong>
+    </dt>
+    <dd>
+    Returns a list of children matching the namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-getElBTNNS">getElementsByTagNameNS</a>.
+ The search is done recursively over the full depth, in a preorder traversal,
+ and this will be the order of the elements in the returned <a href="../classes/NodeList.html#">NodeList</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Element.html#">Element</a> namespace URI to search for, or <code>&quot;*&quot;</code> to match all.
+        </li>
+        <li><span class="parameter">localName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         <a href="../classes/Element.html#">Element</a> localname to search for, or <code>&quot;*&quot;</code> to match all.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <a href="../classes/NodeList.html#">NodeList</a> with children with the requested namespace.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:write"></a>
+    <strong>Document:write ([buffer[, namespacesInScope]])</strong>
+    </dt>
+    <dd>
+    exports the XML.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">buffer</span>
+            <span class="types"><span class="type">array</span></span>
+         an array to which the chunks can be added.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">namespacesInScope</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         namespaceURIs indexed by prefix. For any namespace
+ not in this table, the definitions will be generated.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the buffer array
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

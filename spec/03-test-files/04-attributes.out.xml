@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?description attributes?>
+<root>
+    <a hello="universe" bye="world">
+        <b line="don&apos;t panic">
+            <c answer="42"/>
+        </b>
+    </a>
+</root>

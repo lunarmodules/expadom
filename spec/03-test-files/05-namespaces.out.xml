@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?description attributes?>
+<root>
+    <!-- basics -->
+    <a xmlns="http://default-a">
+        <b/>
+        <tieske:c xmlns:tieske="http://specified">
+            <d xmlns="http://default-d"/>
+        </tieske:c>
+    </a>
+    <!-- namespaced attribute -->
+    <a xmlns:tieske="http://specified" tieske:attr="xml for president">
+        <tieske:c/>
+    </a>
+    <!-- redefining a namespace on a lower level -->
+    <tieske:a xmlns:tieske="http://specified">
+        <tieske:b xmlns:tieske="http://new-tieske"/>
+        <tieske:c/><!-- should remain "http://specified" -->
+    </tieske:a>
+</root>

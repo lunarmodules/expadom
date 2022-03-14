@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>expadom</strong></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>expadom</code></h1>
+<p>expadom parser.</p>
+<p> This parser is build on LuaExpat and parses a document (as a whole or in chunks)
+ into the DOM structure.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#closeParser">closeParser (parser)</a></td>
+	<td class="summary">Closes the parser and returns the parsed document.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#createParser">createParser ()</a></td>
+	<td class="summary">Creates a new parser and accompanying DOM document.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getParserDocument">getParserDocument (parser)</a></td>
+	<td class="summary">Returns the document for a parser.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#parseDocument">parseDocument (data)</a></td>
+	<td class="summary">Parses an XML document into a DOM model.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "closeParser"></a>
+    <strong>closeParser (parser)</strong>
+    </dt>
+    <dd>
+    Closes the parser and returns the parsed document.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">parser</span>
+         A parser created by <a href="../modules/expadom.html#createParser">createParser</a>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a complete parsed DOM document, or nil+err.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "createParser"></a>
+    <strong>createParser ()</strong>
+    </dt>
+    <dd>
+    Creates a new parser and accompanying DOM document.
+ This can be used to parse a document in chunks, otherwise use <a href="../modules/expadom.html#parseDocument">parseDocument</a>
+ as it is more convenient.
+ The document will have a temporary root-element to start with, but that
+ one will be replaced with the actual parsed one during parsing.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        parser (a LuaExpat parser object) + DOM document (empty to start with)
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> parser = expadom.createParser()
+<span class="keyword">for</span> _, chunk <span class="keyword">in</span> <span class="global">ipairs</span>(chunks) <span class="keyword">do</span>
+  <span class="keyword">local</span> a,b,c,d,e = parser:parse(chunk1)
+  <span class="keyword">if</span> <span class="keyword">not</span> a <span class="keyword">then</span>
+    parser:close(parser)
+    <span class="keyword">return</span> a,b,c,d,e
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> doc,b,c,d,e = expadom.closeParser(parser)
+<span class="keyword">if</span> <span class="keyword">not</span> doc <span class="keyword">then</span>
+  <span class="keyword">return</span> doc, a,b,c,d,e
+<span class="keyword">end</span>
+
+<span class="comment">-- 'doc' contains the xml document</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "getParserDocument"></a>
+    <strong>getParserDocument (parser)</strong>
+    </dt>
+    <dd>
+    Returns the document for a parser.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">parser</span>
+         A parser created by <a href="../modules/expadom.html#createParser">createParser</a>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a DOM document to which the parser will add.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "parseDocument"></a>
+    <strong>parseDocument (data)</strong>
+    </dt>
+    <dd>
+    Parses an XML document into a DOM model.
+ This method is easy to use if you have the full document already, and don't
+ need to parse in chunks.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the input text to parse (complete XML document)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the Document object parsed, or nil+parse-error
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

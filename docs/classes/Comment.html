@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><strong>Comment</strong></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Comment</code></h1>
+<p>XML DOM Comment AND CharacterData Interface.</p>
+<p> The <a href="../classes/CharacterData.html#">CharacterData</a> does not have its own node-type in DOM2 specs, hence we
+ simply use the Comment class, since that class inherits from <a href="../classes/CharacterData.html#">CharacterData</a>,
+ but doesn't add anything.</p>
+
+<p> <a href="../classes/CharacterData.html#">CharacterData</a> is not its own class/type (no type-constant defined), and since
+ a Comment type doesn't add anything to the CharacterData, we actually use
+ the Comment type also as the base for <a href="../classes/CharacterData.html#">CharacterData</a> derivatives such as
+ <a href="../classes/Text.html#">Text</a> and <a href="../classes/CDATASection.html#">CDATASection</a>.</p>
+
+<p> See the <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1728279322">Comment</a>,
+ the <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-FF21A306">CharacterData</a>,
+ and <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1950641247">Node</a> interfaces.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#CharacterData:appendData">CharacterData:appendData (arg)</a></td>
+	<td class="summary">Appends data, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-32791A2F">appendData</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CharacterData:deleteData">CharacterData:deleteData (offset, count)</a></td>
+	<td class="summary">Deletes data, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-7C603781">deleteData</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CharacterData:insertData">CharacterData:insertData (offset, arg)</a></td>
+	<td class="summary">Inserts data, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-3EDB695F">insertData</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CharacterData:replaceData">CharacterData:replaceData (offset, count, arg)</a></td>
+	<td class="summary">Replaces data, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-E5CBA7FB">replaceData</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CharacterData:substringData">CharacterData:substringData (offset, count)</a></td>
+	<td class="summary">Gets a substring, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-6531BCCF">substringData</a>.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Comment.properties">Comment.properties</a></td>
+	<td class="summary">Properties of the <a href="../classes/Comment.html#">Comment</a> class, beyond the <a href="../classes/Node.html#">Node</a> class</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Comment:write">Comment:write (buffer)</a></td>
+	<td class="summary">exports the XML.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "CharacterData:appendData"></a>
+    <strong>CharacterData:appendData (arg)</strong>
+    </dt>
+    <dd>
+    Appends data, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-32791A2F">appendData</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">arg</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the data to append
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        nothing
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "CharacterData:deleteData"></a>
+    <strong>CharacterData:deleteData (offset, count)</strong>
+    </dt>
+    <dd>
+    Deletes data, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-7C603781">deleteData</a>.
+ Indices 1-indexed, and based on UTF-8 characters, not bytes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">offset</span>
+            <span class="types"><span class="type">int</span></span>
+         start character
+        </li>
+        <li><span class="parameter">count</span>
+            <span class="types"><span class="type">int</span></span>
+         number of characters to delete
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "CharacterData:insertData"></a>
+    <strong>CharacterData:insertData (offset, arg)</strong>
+    </dt>
+    <dd>
+    Inserts data, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-3EDB695F">insertData</a>.
+ Indices 1-indexed, and based on UTF-8 characters, not bytes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">offset</span>
+            <span class="types"><span class="type">int</span></span>
+         start character
+        </li>
+        <li><span class="parameter">arg</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the data to insert
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "CharacterData:replaceData"></a>
+    <strong>CharacterData:replaceData (offset, count, arg)</strong>
+    </dt>
+    <dd>
+    Replaces data, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-E5CBA7FB">replaceData</a>.
+ Indices 1-indexed, and based on UTF-8 characters, not bytes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">offset</span>
+            <span class="types"><span class="type">int</span></span>
+         start character
+        </li>
+        <li><span class="parameter">count</span>
+            <span class="types"><span class="type">int</span></span>
+         number of characters to delete
+        </li>
+        <li><span class="parameter">arg</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the data to insert
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "CharacterData:substringData"></a>
+    <strong>CharacterData:substringData (offset, count)</strong>
+    </dt>
+    <dd>
+    Gets a substring, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-6531BCCF">substringData</a>.
+ Indices 1-indexed, and based on UTF-8 characters, not bytes.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">offset</span>
+            <span class="types"><span class="type">int</span></span>
+         start character
+        </li>
+        <li><span class="parameter">count</span>
+            <span class="types"><span class="type">int</span></span>
+         number of characters to return
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        true or nil+err
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Comment.properties"></a>
+    <strong>Comment.properties</strong>
+    </dt>
+    <dd>
+    Properties of the <a href="../classes/Comment.html#">Comment</a> class, beyond the <a href="../classes/Node.html#">Node</a> class
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+         (string) the comment data
+        </li>
+        <li><span class="parameter">length</span>
+         (int) the length of the <code>data</code> in UTF-8 characters (readonly)
+        </li>
+        <li><span class="parameter">nodeValue</span>
+         (string) same as field <code>data</code> (readonly)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Comment:write"></a>
+    <strong>Comment:write (buffer)</strong>
+    </dt>
+    <dd>
+    exports the XML.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">buffer</span>
+            <span class="types"><span class="type">array</span></span>
+         an array to which the chunks can be added.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the buffer array
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

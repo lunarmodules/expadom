@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><strong>DOMImplementation</strong></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>DOMImplementation</code></h1>
+<p>XML DOM DOMImplementation class.</p>
+<p> See the <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-102161490">DOMImplementation interface</a></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#methods:createDocument">methods:createDocument (namespaceURI, qualifiedName[, doctype])</a></td>
+	<td class="summary">Creates a new Document instance, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Level-2-Core-DOM-createDocument">createDocument</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#methods:createDocumentType">methods:createDocumentType (qualifiedName, publicId, systemId)</a></td>
+	<td class="summary">Creates a new DocumentType instance, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Level-2-Core-DOM-createDocType">createDocumentType</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#methods:hasFeature">methods:hasFeature (feature, version)</a></td>
+	<td class="summary">Not implemented.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "methods:createDocument"></a>
+    <strong>methods:createDocument (namespaceURI, qualifiedName[, doctype])</strong>
+    </dt>
+    <dd>
+    Creates a new Document instance, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Level-2-Core-DOM-createDocument">createDocument</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">nil</span></span>
+         (required if the <code>qualifiedName</code> has a prefix)
+        </li>
+        <li><span class="parameter">qualifiedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the <code>tagName</code> of the top element, can have a prefix.
+        </li>
+        <li><span class="parameter">doctype</span>
+            <span class="types"><a class="type" href="../classes/DocumentType.html#">DocumentType</a></span>
+         a DocumentType instance.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a new Document instance
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> DOM = <span class="global">require</span>(<span class="string">"expadom.DOMImplementation"</span>)()  <span class="comment">-- create an instance
+</span><span class="keyword">local</span> doc1 = DOM:createDocument(<span class="keyword">nil</span>, <span class="string">"root"</span>)                       <span class="comment">-- plain root element
+</span><span class="keyword">local</span> doc2 = DOM:createDocument(<span class="string">"http://namespace"</span>, <span class="string">"prefix:root"</span>) <span class="comment">-- namespaced root element
+</span><span class="keyword">local</span> doc3 = DOM:createDocument(<span class="string">"http://namespace"</span>, <span class="string">"root"</span>)        <span class="comment">-- root element with default namespace</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "methods:createDocumentType"></a>
+    <strong>methods:createDocumentType (qualifiedName, publicId, systemId)</strong>
+    </dt>
+    <dd>
+    Creates a new DocumentType instance, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Level-2-Core-DOM-createDocType">createDocumentType</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">qualifiedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the DocumentType name
+        </li>
+        <li><span class="parameter">publicId</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the public id
+        </li>
+        <li><span class="parameter">systemId</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the system id
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a new DocumentType instance
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "methods:hasFeature"></a>
+    <strong>methods:hasFeature (feature, version)</strong>
+    </dt>
+    <dd>
+    Not implemented.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">feature</span>
+            <span class="types"><span class="type">TODO</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">version</span>
+         implement hasFeature
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Synopsis">Synopsis </a></li>
+<li><a href="#Good_to_know">Good to know </a></li>
+<li><a href="#License___Copyright">License & Copyright </a></li>
+<li><a href="#History">History </a></li>
+</ul>
+
+
+<h2>Topics</h2>
+<ul class="">
+  <li><strong>README</strong></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+<h1>expadom</h1>
+
+<p><a href="https://github.com/lunarmodules/expadom/actions"><img src="https://img.shields.io/github/workflow/status/lunarmodules/expadom/Build?label=Test%20suite&amp;logo=lua" alt="Build"/></a>
+<a href="https://github.com/lunarmodules/expadom/actions"><img src="https://img.shields.io/github/workflow/status/lunarmodules/expadom/Luacheck?label=Luacheck&amp;logo=lua" alt="Luacheck"/></a>
+<a href="https://coveralls.io/github/lunarmodules/expadom"><img src="https://img.shields.io/coveralls/github/lunarmodules/expadom?label=Coverage&amp;logo=coveralls" alt="Coveralls code coverage"/></a>
+<a href="#history"><img src="https://img.shields.io/github/v/tag/lunarmodules/expadom?color=brightgreen&amp;label=SemVer&amp;logo=semver&amp;sort=semver" alt="SemVer"/></a>
+<a href="https://github.com/Kong/insomnia/blob/master/LICENSE"><img src="https://img.shields.io/github/license/lunarmodules/expadom.svg?label=License" alt="License"/></a></p>
+
+<p>An <a href="https://www.w3.org/TR/DOM-Level-2-Core/">XML DOM Level 2</a> implementation in Lua,
+based on the <a href="https://github.com/lunarmodules/luaexpat">(Lua)Expat parser</a>.</p>
+
+<p><a name="Synopsis"></a></p>
+<h2>Synopsis</h2>
+
+
+<pre>
+<span class="keyword">local</span> DOM = <span class="global">require</span>(<span class="string">"expadom.DOMImplementation"</span>)()
+<span class="keyword">local</span> doc = DOM:createDocument(<span class="keyword">nil</span>, <span class="string">"root"</span>)
+<span class="keyword">local</span> root = doc.documentElement
+root:appendChild(doc:createComment(<span class="string">"let's create an address list"</span>))
+<span class="keyword">local</span> list = doc:createElement(<span class="string">"addresses"</span>)
+list:setAttribute(<span class="string">"country"</span>, <span class="string">"Netherlands"</span>)
+root:appendChild(list)
+<span class="keyword">local</span> addr = doc:createElement(<span class="string">"address"</span>)
+list:appendChild(addr)
+addr:appendChild(doc:createTextNode(<span class="string">"address goes here"</span>))
+
+<span class="keyword">local</span> xml_written = <span class="global">table</span>.concat(doc:write())
+
+<span class="comment">-- result (formatting added for readability):
+</span><span class="comment">-- &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</span><span class="comment">-- &lt;root&gt;
+</span><span class="comment">--     &lt;!--let's create an address list--&gt;
+</span><span class="comment">--     &lt;addresses country="Netherlands"&gt;
+</span><span class="comment">--         &lt;address&gt;address goes here&lt;/address&gt;
+</span><span class="comment">--     &lt;/addresses&gt;
+</span><span class="comment">-- &lt;/root&gt;
+</span>
+<span class="comment">-- now parse the document again:
+</span><span class="keyword">local</span> xml_parsed = <span class="global">require</span>(<span class="string">"expadom"</span>).parseDocument(xml_written)
+<span class="keyword">local</span> address = xml_parsed:getElementsByTagName(<span class="string">"address"</span>)[<span class="number">1</span>]
+<span class="global">print</span>(address.childNodes[<span class="number">1</span>].nodeValue)  <span class="comment">--&gt; "address goes here"</span>
+</pre>
+
+
+<p><a name="Good_to_know"></a></p>
+<h2>Good to know</h2>
+
+<ul>
+    <li>This is a Lua implementation, so any 0-based indices mentioned in the DOM Level
+    2 specification will be 1-based in this implementation.</li>
+    <li>The spec defines "dynamic", and readonly properties, like <code>Node.nextSibling</code> for
+    example. In Lua traditionally properties are static fields on a table. This
+    implementation however stays close to the spec, and has dynamic properties,
+    although this is not very 'lua-ish'.</li>
+    <li>The only supported encoding is UTF-8. The underlying Expat parser will convert
+    the other common ones to UTF-8, so parsing is covered. But generated output will
+    only be UTF-8.</li>
+    <li>DTD's are not supported, neither external nor internal subsets.</li>
+</ul>
+
+<p><a name="License___Copyright"></a></p>
+<h2>License &amp; Copyright</h2>
+
+<p>The project is licensed under the <a href="https://github.com/lunarmodules/expadom/blob/main/LICENSE">MIT License</a></p>
+
+<p><a name="History"></a></p>
+<h2>History</h2>
+
+<p>none...</p>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

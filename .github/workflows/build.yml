@@ -1,0 +1,55 @@
+name: "Build"
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      EXPAT_VERSION: 2.4.4
+
+    strategy:
+      fail-fast: false
+      matrix:
+        luaVersion: ["5.1", "5.2", "5.3", "5.4", "luajit-2.1.0-beta3", "luajit-openresty"]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: leafo/gh-actions-lua@v8
+      with:
+        luaVersion: ${{ matrix.luaVersion }}
+
+    - uses: leafo/gh-actions-luarocks@v4
+
+    - name: build expat
+      run: |
+        git clone -b R_$(echo $EXPAT_VERSION | sed "s/\./_/g") --single-branch https://github.com/libexpat/libexpat.git
+        cd libexpat/expat
+        ./buildconf.sh
+        ./configure
+        sudo make install
+
+    - name: Lua dependencies
+      run: |
+        git config --global url.https://github.com/.insteadOf git://github.com/
+        luarocks install busted
+        luarocks install luacov-coveralls
+        # waiting for LuaExpat 1.4 release, for now install master branch
+        luarocks install https://raw.githubusercontent.com/lunarmodules/luaexpat/master/luaexpat-dev-1.rockspec
+
+    - name: build
+      run: |
+        luarocks make
+
+    - name: Busted tests
+      run: |
+        busted --coverage --Xoutput "--color"
+
+    - name: Report test coverage
+      if: success()
+      continue-on-error: true
+      run: luacov-coveralls
+      env:
+        COVERALLS_REPO_TOKEN: ${{ github.token }}

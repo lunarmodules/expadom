@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?description mixing cdata, pi and comments?>
+<root>
+    <!--comment1-->    <!--commentA-->
+    <a>
+    <![CDATA[arbitrary]]>    <![CDATA[stuff]]>
+        <b>
+        <?pi1 and some data?>    <?piA and some data?>
+            <c/>
+        <?pi2 and more data?>    <?piB and some data?>
+        </b>
+    <![CDATA[more arbitrary]]>    <![CDATA[stuff]]>
+    </a>
+    <!--comment2-->    <!--commentB-->
+</root>

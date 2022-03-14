@@ -1,0 +1,566 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><strong>Node</strong></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Node</code></h1>
+<p>XML DOM Node Interface.</p>
+<p> This is the base class from which all other node types are derived.</p>
+
+<p> See the <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1950641247">Node</a>
+ interface.</p>
+
+
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Node.properties">Node.properties</a></td>
+	<td class="summary">Properties of the <a href="../classes/Node.html#">Node</a> class</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Node:appendChild">Node:appendChild (newChild)</a></td>
+	<td class="summary">Appends a child node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-184E7107">appendChild</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:cloneNode">Node:cloneNode (deep)</a></td>
+	<td class="summary">Clones the node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-3A0ED0A4">cloneNode</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:hasAttributes">Node:hasAttributes ()</a></td>
+	<td class="summary">Checks if the Node has attributes, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-NodeHasAttrs">hasAttributes</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:hasChildNodes">Node:hasChildNodes ()</a></td>
+	<td class="summary">Checks if the Node has child nodes, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-810594187">hasChildNodes</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:insertBefore">Node:insertBefore (newChild[, refChild])</a></td>
+	<td class="summary">Inserts a child node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-952280727">insertBefore</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:insertChildAtIndex">Node:insertChildAtIndex (newChild[, index])</a></td>
+	<td class="summary">Inserts a child node at the given index.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:isNamespaced">Node:isNamespaced ()</a></td>
+	<td class="summary">Checks if a Node is namespaced or not.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:isParent">Node:isParent (parent)</a></td>
+	<td class="summary">Recursively checks if the current node is a child of parent.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:isSupported">Node:isSupported (feature, version)</a></td>
+	<td class="summary">Not implemented, should implement <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Level-2-Core-Node-supports">isSupported</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:nodeIndex">Node:nodeIndex (child)</a></td>
+	<td class="summary">Returns the index of the child node.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:normalize">Node:normalize ()</a></td>
+	<td class="summary">Normalizes the node recursively, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-normalize">normalize</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:removeChild">Node:removeChild (oldChild)</a></td>
+	<td class="summary">Removes and returns a child node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1734834066">removeChild</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Node:replaceChild">Node:replaceChild (newChild, oldChild)</a></td>
+	<td class="summary">Removes and returns a child node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-785887307">replaceChild</a>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Node.properties"></a>
+    <strong>Node.properties</strong>
+    </dt>
+    <dd>
+    Properties of the <a href="../classes/Node.html#">Node</a> class
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">attributes</span>
+         <a href="../classes/NamedNodeMap.html#">NamedNodeMap</a> holding the associated attributes (readonly), <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1841493061">see per type</a>
+        </li>
+        <li><span class="parameter">childNodes</span>
+         <a href="../classes/NodeList.html#">NodeList</a> holding the child nodes (readonly)
+        </li>
+        <li><span class="parameter">firstChild</span>
+         the first child <a href="../classes/Node.html#">Node</a> (readonly)
+        </li>
+        <li><span class="parameter">lastChild</span>
+         the last child <a href="../classes/Node.html#">Node</a> (readonly)
+        </li>
+        <li><span class="parameter">localName</span>
+         (string) the localName (readonly)
+        </li>
+        <li><span class="parameter">namespaceURI</span>
+         (string) the namespace URI (readonly)
+        </li>
+        <li><span class="parameter">nextSibling</span>
+         the next sibling child <a href="../classes/Node.html#">Node</a> from the parent <a href="../classes/Node.html#">Node</a> (readonly)
+        </li>
+        <li><span class="parameter">nodeName</span>
+         (string) the nodeName (readonly), <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1841493061">see per type</a>
+        </li>
+        <li><span class="parameter">nodeType</span>
+         the type of node, see the constant <code>TYPES</code> (readonly)
+        </li>
+        <li><span class="parameter">nodeValue</span>
+         the node value, see descendant classes (readonly), <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1841493061">see per type</a>
+        </li>
+        <li><span class="parameter">ownerDocument</span>
+         the <a href="../classes/Document.html#">Document</a> object, that owns/created this node (readonly)
+        </li>
+        <li><span class="parameter">parentNode</span>
+         the <a href="../classes/Node.html#">Node</a> object, that owns this node (readonly)
+        </li>
+        <li><span class="parameter">prefix</span>
+         (string) the namespace prefix
+        </li>
+        <li><span class="parameter">previousSibling</span>
+         the previous sibling child <a href="../classes/Node.html#">Node</a> from the parent <a href="../classes/Node.html#">Node</a> (readonly)
+        </li>
+        <li><span class="parameter">qualifiedName</span>
+         (string) the nodes' qualified name, additional to the DOM2 spec (readonly)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Node:appendChild"></a>
+    <strong>Node:appendChild (newChild)</strong>
+    </dt>
+    <dd>
+    Appends a child node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-184E7107">appendChild</a>.
+ If <code>newChild</code> is a <code>DocumenFragment</code> then all its children will be appended instead.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newChild</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the child <a href="../classes/Node.html#">Node</a> to append.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        newChild, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:cloneNode"></a>
+    <strong>Node:cloneNode (deep)</strong>
+    </dt>
+    <dd>
+    Clones the node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-3A0ED0A4">cloneNode</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">deep</span>
+            <span class="types"><span class="type">bool</span></span>
+         if <code>true</code> create a recursive copy.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        newChild, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:hasAttributes"></a>
+    <strong>Node:hasAttributes ()</strong>
+    </dt>
+    <dd>
+    Checks if the Node has attributes, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-NodeHasAttrs">hasAttributes</a>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:hasChildNodes"></a>
+    <strong>Node:hasChildNodes ()</strong>
+    </dt>
+    <dd>
+    Checks if the Node has child nodes, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-810594187">hasChildNodes</a>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:insertBefore"></a>
+    <strong>Node:insertBefore (newChild[, refChild])</strong>
+    </dt>
+    <dd>
+    Inserts a child node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-952280727">insertBefore</a>.
+ If <code>newChild</code> is a <code>DocumenFragment</code> then all its children will be inserted instead.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newChild</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the child <a href="../classes/Node.html#">Node</a> to insert.
+        </li>
+        <li><span class="parameter">refChild</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the reference child before which <code>newChild</code> will be inserted. Defaults to appending at the end.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        newChild, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:insertChildAtIndex"></a>
+    <strong>Node:insertChildAtIndex (newChild[, index])</strong>
+    </dt>
+    <dd>
+    Inserts a child node at the given index.
+ If <code>newChild</code> is a <code>DocumenFragment</code> then all its children will be inserted instead.
+ This is not a DOM2 method, added for convenience.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newChild</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the child node to insert.
+        </li>
+        <li><span class="parameter">index</span>
+            <span class="types"><span class="type">int</span></span>
+         where the child is to be inserted (defaults to appending)
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer (1-indexed), or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:isNamespaced"></a>
+    <strong>Node:isNamespaced ()</strong>
+    </dt>
+    <dd>
+    Checks if a Node is namespaced or not.
+ This is an additional method over the DOM2 spec.
+ The node must be either an Attribute or Element type, and have a namespace.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:isParent"></a>
+    <strong>Node:isParent (parent)</strong>
+    </dt>
+    <dd>
+    Recursively checks if the current node is a child of parent.
+ This is not a DOM2 method, added for convenience.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">parent</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the Parent node to check for the child.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean, <code>true</code> if the current Node is located somewhere in the child-tree of <code>parent</code>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:isSupported"></a>
+    <strong>Node:isSupported (feature, version)</strong>
+    </dt>
+    <dd>
+    Not implemented, should implement <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Level-2-Core-Node-supports">isSupported</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">feature</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the feature to check
+        </li>
+        <li><span class="parameter">version</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the version to check
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        throws an error for now
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:nodeIndex"></a>
+    <strong>Node:nodeIndex (child)</strong>
+    </dt>
+    <dd>
+    Returns the index of the child node.
+ This is not a DOM2 method, added for convenience.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">child</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the child node to look up in the current node.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer (1-indexed), or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:normalize"></a>
+    <strong>Node:normalize ()</strong>
+    </dt>
+    <dd>
+    Normalizes the node recursively, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-normalize">normalize</a>.
+ Will recursively combine all adjacent <a href="../classes/Text.html#">Text</a> nodes and remove empty <a href="../classes/Text.html#">Text</a> nodes.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        nothing
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:removeChild"></a>
+    <strong>Node:removeChild (oldChild)</strong>
+    </dt>
+    <dd>
+    Removes and returns a child node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1734834066">removeChild</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">oldChild</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the child <a href="../classes/Node.html#">Node</a> to remove.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        oldChild, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Node:replaceChild"></a>
+    <strong>Node:replaceChild (newChild, oldChild)</strong>
+    </dt>
+    <dd>
+    Removes and returns a child node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-785887307">replaceChild</a>.
+ If <code>newChild</code> is a <code>DocumenFragment</code> then all its children will be inserted instead.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newChild</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the child <a href="../classes/Node.html#">Node</a> to insert.
+        </li>
+        <li><span class="parameter">oldChild</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the child <a href="../classes/Node.html#">Node</a> to remove.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        oldChild, or nil+err
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-16 14:02:00 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

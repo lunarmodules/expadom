@@ -1,7 +1,7 @@
-describe("Attribute:", function()
+describe("Attr:", function()
 
 	local ERRORS = require("expadom.constants").ERRORS
-	local Attribute = require "expadom.Attribute"
+	local Attribute = require "expadom.Attr"
 
 	local utf8 = require("expadom.xmlutils").utf8
 	local valid_utf8_char = string.char(tonumber("CF",16))..string.char(tonumber("8C",16)) -- "\xCF\x8C", either byte alone is invalid.

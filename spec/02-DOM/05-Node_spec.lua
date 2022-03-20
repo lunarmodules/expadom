@@ -7,7 +7,7 @@ describe("Node", function()
 	local DOM = require("expadom.DOMImplementation")()
 	local Node = require "expadom.Node"
 	local Element = require "expadom.Element"
-	local Attribute = require "expadom.Attribute"
+	local Attribute = require "expadom.Attr"
 	local NodeList = require "expadom.NodeList"
 
 

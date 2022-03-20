@@ -6,7 +6,7 @@
 [![SemVer](https://img.shields.io/github/v/tag/lunarmodules/expadom?color=brightgreen&label=SemVer&logo=semver&sort=semver)](#history)
 [![License](https://img.shields.io/github/license/lunarmodules/expadom.svg?label=License)](https://github.com/Kong/insomnia/blob/master/LICENSE)
 
-An [XML DOM Level 2](https://www.w3.org/TR/DOM-Level-2-Core/) implementation in Lua,
+An [XML DOM Level 2 Core](https://www.w3.org/TR/DOM-Level-2-Core/) implementation in Lua,
 based on the [(Lua)Expat parser](https://github.com/lunarmodules/luaexpat).
 
 ## Synopsis
@@ -79,7 +79,7 @@ root:appendChild(doc:createTextNode("hello world"))
 
 ## Downloads, dependencies, and source code
 
-Source ode and downloads are available from the [Github project page](https://github.com/lunarmodules/expadom). Installation is typically easiest using LuaRocks.
+Source code and downloads are available from the [Github project page](https://github.com/lunarmodules/expadom). Installation is typically easiest using LuaRocks.
 
 ### Dependencies
 

@@ -1,11 +1,11 @@
 project='expadom'
 title='XML DOM 2 for Lua'
-description='Expat based XML DOM level 2 handling for Lua'
+description='Expat based XML DOM level 2 Core handling for Lua'
 format='discount'
 file='./src/'
 dir='docs'
-readme='README.md'
 sort=true
 sort_modules=true
 all=false
-style='./docs/'
+style='./docs_topics/'
+topics={'docs_topics', 'README.md'}

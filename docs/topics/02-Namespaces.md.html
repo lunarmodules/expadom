@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/01-Introduction.md.html">01-Introduction</a></li>
+  <li><strong>02-Namespaces</strong></li>
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+<h1>Namespaces</h1>
+
+<p>Namesapces are created using the standard methods available in the DOM Core
+specification, for creating attributes and elements. See <a href="../classes/Document.html#Document:createElementNS">Document.createElementNS</a>,
+<a href="../classes/Document.html#Document:createAttributeNS">Document.createAttributeNS</a>, and <a href="../classes/Element.html#Element:setAttributeNS">Element.setAttributeNS</a>.</p>
+
+<p>In this Lua implementation the <code>namespaceURI</code>, <code>localName</code>, and <code>prefix</code> properties
+are tracked on the Nodes. Not in Attribute nodes in Elements. This means that there
+will be no attributes in the document tree for defining namespaces.</p>
+
+<p>Example with 2 namespaces defined on the root element:</p>
+<pre><code> &lt;node xmlns='default_ns' xmlns:lua='https://lua.org' just_attribute='value'&gt;
+     &lt;lua:source&gt;print [[hello world]]&lt;/lua:source&gt;
+ &lt;/node&gt;
+</code></pre>
+
+
+<p>The top-level <code>&quot;node&quot;</code> element defines 3 attributes, of which 2 are namespace declarations.
+Yet in the document object there will only be 1 attribute; <code>just_attribute</code> since
+the definitions are reflected in the properties of the nodes.</p>
+
+<p>If the document would be parsed into a <code>doc</code> variable then;</p>
+
+<pre>
+<span class="keyword">local</span> elem = doc.documentElement
+<span class="global">print</span>(elem.localName)            <span class="comment">--&gt; "node"
+</span><span class="global">print</span>(elem.prefix)               <span class="comment">--&gt; nil
+</span><span class="global">print</span>(elem.namespaceURI)         <span class="comment">--&gt; "default_ns"
+</span><span class="global">print</span>(elem.attributes.length)    <span class="comment">--&gt; 1
+</span><span class="keyword">local</span> source = elem.childNodes[<span class="number">2</span>]
+<span class="global">print</span>(source.localName)          <span class="comment">--&gt; "source"
+</span><span class="global">print</span>(source.prefix)             <span class="comment">--&gt; lua
+</span><span class="global">print</span>(source.namespaceURI)       <span class="comment">--&gt; "https://lua.org"</span>
+</pre>
+
+
+<p>When writing an Xml document, the namespace attributes will implicitly be added
+to the elements where they are needed. To explicitly define namespaces they can
+be added to <code>explicitNamespaces</code> in <a href="../classes/Element.html#Element.properties">Element.properties</a>.</p>
+
+<p>As an example, here's the same document ceated from code;</p>
+
+<pre>
+<span class="keyword">local</span> DOM = <span class="global">require</span>(<span class="string">"expadom.DOMImplementation"</span>)()
+doc = DOM:createDocument(<span class="string">"default_ns"</span>, <span class="string">"node"</span>)
+<span class="keyword">local</span> source = doc:createElementNS(<span class="string">"https://lua.org"</span>, <span class="string">"lua:source"</span>)
+doc.documentElement:appendChild(doc:createTextNode(<span class="string">"\n    "</span>))
+doc.documentElement:appendChild(source)
+doc.documentElement:appendChild(doc:createTextNode(<span class="string">"\n"</span>))
+source:appendChild(doc:createTextNode(<span class="string">"print [[hello world]]"</span>))
+<span class="global">print</span>(<span class="global">table</span>.concat(doc:write()))
+</pre>
+
+<p>Output:</p>
+<pre><code> &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+ &lt;node xmlns="default_ns"&gt;
+     &lt;lua:source xmlns:lua="https://lua.org"&gt;print [[hello world]]&lt;/lua:source&gt;
+ &lt;/node&gt;
+</code></pre>
+
+
+<p>The output however has the namespace declaration moved to the <code>&quot;lua:source&quot;</code>
+element, since that is where it is first used.</p>
+
+<p>If an explicit declaration is added to the root element (called <code>&quot;node&quot;</code>), like so:</p>
+
+<pre>
+doc.documentElement.explicitNamespaces[<span class="string">"lua"</span>] = <span class="string">"https://lua.org"</span>
+<span class="global">print</span>(<span class="global">table</span>.concat(doc:write()))
+</pre>
+
+<p>Then the output becomes:</p>
+<pre><code> &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+ &lt;node xmlns:lua="https://lua.org" xmlns="default_ns"&gt;
+     &lt;lua:source&gt;print [[hello world]]&lt;/lua:source&gt;
+ &lt;/node&gt;
+</code></pre>
+
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-21 10:24:39 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

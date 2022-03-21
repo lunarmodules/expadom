@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XML DOM 2 for Lua</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>expadom</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Parsing_documents">Parsing documents </a></li>
+<li><a href="#Creating_documents">Creating documents </a></li>
+<li><a href="#Good_to_know">Good to know </a></li>
+</ul>
+
+
+<h2>Topics</h2>
+<ul class="">
+  <li><strong>01-Introduction</strong></li>
+  <li><a href="../topics/02-Namespaces.md.html">02-Namespaces</a></li>
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/expadom.html">expadom</a></li>
+  <li><a href="../modules/expadom.class.html">expadom.class</a></li>
+  <li><a href="../modules/expadom.constants.html">expadom.constants</a></li>
+  <li><a href="../modules/expadom.xmlutils.html">expadom.xmlutils</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/Attribute.html">Attribute</a></li>
+  <li><a href="../classes/CDATASection.html">CDATASection</a></li>
+  <li><a href="../classes/CharacterData.html">CharacterData</a></li>
+  <li><a href="../classes/Comment.html">Comment</a></li>
+  <li><a href="../classes/DOMImplementation.html">DOMImplementation</a></li>
+  <li><a href="../classes/Document.html">Document</a></li>
+  <li><a href="../classes/DocumentFragment.html">DocumentFragment</a></li>
+  <li><a href="../classes/DocumentType.html">DocumentType</a></li>
+  <li><a href="../classes/Element.html">Element</a></li>
+  <li><a href="../classes/NamedNodeMap.html">NamedNodeMap</a></li>
+  <li><a href="../classes/Node.html">Node</a></li>
+  <li><a href="../classes/NodeList.html">NodeList</a></li>
+  <li><a href="../classes/ProcessingInstruction.html">ProcessingInstruction</a></li>
+  <li><a href="../classes/Text.html">Text</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+<h1>expadom</h1>
+
+<p>An <a href="https://www.w3.org/TR/DOM-Level-2-Core/">XML DOM Level 2 Core</a> implementation in Lua,
+based on the <a href="https://github.com/lunarmodules/luaexpat">(Lua)Expat parser</a>.</p>
+
+<p><a name="Parsing_documents"></a></p>
+<h2>Parsing documents</h2>
+
+<p>To parse documents start with the main <a href="https://lunarmodules.github.io/expadom/modules/expadom.html"><a href="../modules/expadom.html#">expadom</a> module</a>;</p>
+
+
+<pre>
+<span class="keyword">local</span> parseXml = <span class="global">require</span>(<span class="string">"expadom"</span>).parseDocument
+<span class="keyword">local</span> doc = parseXml(<span class="string">"&lt;root&gt;hello world&lt;/root&gt;"</span>)
+</pre>
+
+
+<p><a name="Creating_documents"></a></p>
+<h2>Creating documents</h2>
+
+<p>To create documents use the <a href="https://lunarmodules.github.io/expadom/classes/DOMImplementation.html">DOMImplementation</a>
+to create a Document. From there the <a href="https://lunarmodules.github.io/expadom/classes/Document.html">Document interface</a>
+can be used to create all sorts of children and build the document;</p>
+
+
+<pre>
+<span class="keyword">local</span> DOM = <span class="global">require</span>(<span class="string">"expadom.DOMImplementation"</span>)()
+<span class="keyword">local</span> doc = DOM:createDocument(<span class="keyword">nil</span>, <span class="string">"root"</span>)
+<span class="keyword">local</span> root = doc.documentElement
+root:appendChild(doc:createTextNode(<span class="string">"hello world"</span>))
+</pre>
+
+
+<p><a name="Good_to_know"></a></p>
+<h2>Good to know</h2>
+
+<ul>
+    <li>Namespaces are tracked on a per Node basis, not in Attributes, see <code>Namespaces</code>.</li>
+    <li>This is a Lua implementation, so any 0-based indices mentioned in the DOM Level
+    2 specification will be 1-based in this implementation.</li>
+    <li>The spec defines "dynamic", and readonly properties, like <code>Node.nextSibling</code> for
+    example. In Lua traditionally properties are static fields on a table. This
+    implementation however stays close to the spec, and has dynamic properties,
+    although this is not very 'lua-ish'.</li>
+    <li>The only supported encoding is UTF-8. The underlying Expat parser will convert
+    the other common ones to UTF-8, so parsing is covered. But generated output will
+    only be UTF-8.</li>
+    <li>DTD's are not supported, neither external nor internal subsets.</li>
+</ul>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-21 10:24:39 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

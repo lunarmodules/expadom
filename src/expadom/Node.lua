@@ -13,6 +13,7 @@ local xmlutils = require "expadom.xmlutils"
 local constants = require "expadom.constants"
 local ERRORS = constants.ERRORS
 local TYPES = constants.NODE_TYPES
+local DEFAULT_NAMESPACES = constants.DEFAULT_NAMESPACES
 
 
 
@@ -144,7 +145,7 @@ local properties = {
 			if newPrefix then
 				assert(xmlutils.validate_prefix(newPrefix))
 			end
-			if newPrefix == "xml" and props.namespaceURI ~= "http://www.w3.org/XML/1998/namespace" then
+			if newPrefix == "xml" and props.namespaceURI ~= DEFAULT_NAMESPACES.xml then
 				error(ERRORS.NAMESPACE_ERR)
 			end
 
@@ -158,7 +159,7 @@ local properties = {
 					error(ERRORS.NAMESPACE_ERR) -- namespaced attributes MUST have a prefix
 				end
 				if (qualifiedName == "xmlns" or newPrefix == "xmlns") and
-					props.namespaceURI ~= "http://www.w3.org/2000/xmlns/" then
+					props.namespaceURI ~= DEFAULT_NAMESPACES.xmlns then
 					error(ERRORS.NAMESPACE_ERR)
 				end
 				props.name = qualifiedName    	-- Attribute
@@ -324,19 +325,19 @@ function methods:checkName(qualifiedName, name, prefix, localName, namespaceURI,
 			return nil, "namespaceURI is required when specifying a prefix"
 		end
 
-		if prefix == "xml" and namespaceURI ~= "http://www.w3.org/XML/1998/namespace" then
-			return nil, "prefix 'xml' is reserved for namespace 'http://www.w3.org/XML/1998/namespace'"
+		if prefix == "xml" and namespaceURI ~= DEFAULT_NAMESPACES.xml then
+			return nil, "prefix 'xml' is reserved for namespace '"..DEFAULT_NAMESPACES.xml.."'"
 		end
 
 		qualifiedName = prefix..":"..localName
 
 	else
 		if isAttr then
-			if namespaceURI then
+			if namespaceURI and localName ~= "xmlns" then
 				return nil, "attribute must have a prefix if namespaceURI is given"
 			end
-			if localName == "xmlns" and namespaceURI ~= "http://www.w3.org/2000/xmlns/" then
-				return nil, "attribute name 'xmlns' is reserved for namespace 'http://www.w3.org/2000/xmlns/'"
+			if localName == "xmlns" and namespaceURI ~= DEFAULT_NAMESPACES.xmlns then
+				return nil, "attribute name 'xmlns' is reserved for namespace '"..DEFAULT_NAMESPACES.xmlns.."'"
 			end
 		end
 

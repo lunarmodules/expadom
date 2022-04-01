@@ -75,14 +75,22 @@ local function enum(...)
 	return enum
 end
 
+
 ---
 -- @field DEFAULT_NS_KEY the 'prefix' value to use to indicate the default namespace, see `Element:write`.
 -- @field ERRORS Error return codes [as defined here](https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-17189187)
 -- @field NODE_TYPES Node types [as defined here](https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1950641247)
+-- @field DEFAULT_NAMESPACES hash table with entries; `xmlns = "http://www.w3.org/2000/xmlns/"`, and `xml = "http://www.w3.org/XML/1998/namespace"`
 -- @table constants
-local constants = {
+local constants = enum {
 	DEFAULT_NS_KEY = "_default",
 	NIL_SENTINEL = {},
+	DEFAULT_NAMESPACES = setmetatable({
+		xml = "http://www.w3.org/XML/1998/namespace",
+		xmlns = "http://www.w3.org/2000/xmlns/",
+	},{
+		__newindex = function() error("DEFAULT_NAMESPACES is a read-only table") end,
+	}),
 
 	ERRORS = enum {
 		-- level 1

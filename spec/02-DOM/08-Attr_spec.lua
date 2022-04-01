@@ -170,6 +170,34 @@ describe("Attr:", function()
 				nodeName = "xml:abc"
 			}
 		}, {
+			desc = "qualifiedName 'xmlns' with namespace 'http://www.w3.org/2000/xmlns/'",
+			input = {
+				qualifiedName = "xmlns",
+				namespaceURI = "http://www.w3.org/2000/xmlns/",
+			},
+			output = {
+				name = "xmlns",
+				qualifiedName = "xmlns",
+				namespaceURI = "http://www.w3.org/2000/xmlns/",
+				prefix = nil,
+				localName = "xmlns",
+				nodeName = "xmlns"
+			}
+		}, {
+			desc = "localName 'xmlns' with namespace 'http://www.w3.org/2000/xmlns/'",
+			input = {
+				localName = "xmlns",
+				namespaceURI = "http://www.w3.org/2000/xmlns/",
+			},
+			output = {
+				name = "xmlns",
+				qualifiedName = "xmlns",
+				namespaceURI = "http://www.w3.org/2000/xmlns/",
+				prefix = nil,
+				localName = "xmlns",
+				nodeName = "xmlns"
+			}
+		}, {
 			desc = "prefix 'xml' requires namespace 'http://www.w3.org/XML/1998/namespace'",
 			input = {
 				qualifiedName = "xml:abc",

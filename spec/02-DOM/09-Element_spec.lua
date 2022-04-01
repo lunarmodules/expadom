@@ -1,12 +1,12 @@
 describe("Element:", function()
 
 	local ERRORS = require("expadom.constants").ERRORS
+	local DEFAULT_NAMESPACES = require("expadom.constants").DEFAULT_NAMESPACES
 	local DEFAULT_NS_KEY = require("expadom.constants").DEFAULT_NS_KEY
 	local Class = require "expadom.class"
 	local Element = require "expadom.Element"
 	local DOM = require("expadom.DOMImplementation")()
 	local NamedNodeMap = require "expadom.NamedNodeMap"
-
 
 	local doc
 	before_each(function()
@@ -212,12 +212,6 @@ describe("Element:", function()
 		it("reports proper nodeValue", function()
 			local elem = doc:createElementNS("http://ns", "ns:mytag")
 			assert.equal(nil, elem.nodeValue)
-		end)
-
-
-		it("explicitNamespaces defaults to empty table", function()
-			local elem = doc:createElementNS("http://ns", "ns:mytag")
-			assert.same({}, elem.explicitNamespaces)
 		end)
 
 
@@ -698,6 +692,72 @@ describe("Element:", function()
 
 
 
+		describe("defineNamespace", function()
+
+			it("creates a namespace attribute", function()
+				local elem = doc:createElement("elem")
+				local attr = assert(elem:defineNamespace("http://my_namespace", "prefix"))
+				assert.equal(DEFAULT_NAMESPACES.xmlns, attr.namespaceURI)
+				assert.equal("xmlns", attr.prefix)
+				assert.equal("prefix", attr.localName)
+				assert.equal("xmlns:prefix", attr.qualifiedName)
+				assert.equal("http://my_namespace", attr.value)
+			end)
+
+
+			it("updates existing namespace attribute", function()
+				local elem = doc:createElement("elem")
+				local attr = assert(elem:defineNamespace("http://my_namespace", "prefix"))
+				local attr2 = assert(elem:defineNamespace("http://my_other_namespace", "prefix"))
+				assert.equal(attr, attr2) -- same; existing one updated
+				assert.equal(DEFAULT_NAMESPACES.xmlns, attr.namespaceURI)
+				assert.equal("xmlns", attr.prefix)
+				assert.equal("prefix", attr.localName)
+				assert.equal("xmlns:prefix", attr.qualifiedName)
+				assert.equal("http://my_other_namespace", attr.value)
+			end)
+
+
+			it("creates a default namespace attribute", function()
+				local elem = doc:createElement("elem")
+				local attr = assert(elem:defineNamespace("http://my_namespace"))
+				assert.equal(DEFAULT_NAMESPACES.xmlns, attr.namespaceURI)
+				assert.equal(nil, attr.prefix)
+				assert.equal("xmlns", attr.localName)
+				assert.equal("xmlns", attr.name)
+				assert.equal("xmlns", attr.qualifiedName)
+				assert.equal("http://my_namespace", attr.value)
+			end)
+
+
+			it("updates existing default namespace attribute", function()
+				local elem = doc:createElement("elem")
+				local attr = assert(elem:defineNamespace("http://my_namespace"))
+				local attr2 = assert(elem:defineNamespace("http://my_other_namespace"))
+				assert.equal(attr, attr2) -- same; existing one updated
+				assert.equal(DEFAULT_NAMESPACES.xmlns, attr.namespaceURI)
+				assert.equal(nil, attr.prefix)
+				assert.equal("xmlns", attr.localName)
+				assert.equal("xmlns", attr.name)
+				assert.equal("xmlns", attr.qualifiedName)
+				assert.equal("http://my_other_namespace", attr.value)
+			end)
+
+
+			it("won't allow setting default xml/xmlns namespaces", function()
+				local elem = doc:createElement("elem")
+				assert.has.error(function()
+					elem:defineNamespace("http://my_namespace", "xmlns")
+				end, "prefix 'xmlns' has a default namespaceURI and cannot be set")
+				assert.has.error(function()
+					elem:defineNamespace("http://my_namespace", "xml")
+				end, "prefix 'xml' has a default namespaceURI and cannot be set")
+			end)
+
+		end)
+
+
+
 		describe("write()", function()
 
 			it("exports escaped data and returns buffer", function()
@@ -758,20 +818,11 @@ describe("Element:", function()
 			end)
 
 
-			it("adds explicitNamespaces definitions", function()
+			it("adds explicit namespaces definitions", function()
 				local elem = doc:createElement("elem")
-				elem.explicitNamespaces["explicitOne"] = "http://explct"
+				assert(elem:defineNamespace("http://explct", "explicitOne"))
 				assert.equal([[<elem xmlns:explicitOne="http://explct"/>]],
 					table.concat(elem:write({}, {})))
-			end)
-
-
-			it("skips explicitNamespaces definitions if already defined", function()
-				local elem = doc:createElement("elem")
-				elem.explicitNamespaces["explicitOne"] = "http://explct"
-				elem:appendChild(doc:createElementNS("http://explct", "explicitOne:child"))
-				assert.equal([[<elem><explicitOne:child/></elem>]],
-					table.concat(elem:write({}, { explicitOne = "http://explct"})))
 			end)
 
 
@@ -784,6 +835,15 @@ describe("Element:", function()
 			end)
 
 
+			it("fails if duplicate prefixes are used by element and namespace attribute", function()
+				local elem = doc:createElementNS("http://ns1", "prefix:elem")
+				assert(elem:defineNamespace("http://ns2", "prefix"))
+				assert.has.error(function()
+					elem:write({}, {})
+				end, "prefix 'prefix' has 2 URIs defined on the same element; 'http://ns2' and 'http://ns1'")
+			end)
+
+
 			it("fails if duplicate prefixes are used by 2 attributes", function()
 				local elem = doc:createElement("elem")
 				assert(elem:setAttributeNS("http://ns1", "prefix:attr1", "a 'value'"))
@@ -791,6 +851,16 @@ describe("Element:", function()
 				assert.has.error(function()
 					elem:write({}, {})
 				end, "prefix 'prefix' has 2 URIs defined on the same element; 'http://ns1' and 'http://ns2'")
+			end)
+
+
+			it("fails if duplicate prefixes are used by attribute and namespace attribute", function()
+				local elem = doc:createElement("elem")
+				assert(elem:setAttributeNS("http://ns1", "prefix:attr1", "a 'value'"))
+				assert(elem:defineNamespace("http://ns2", "prefix")) -- same prefix, different URI!!
+				assert.has.error(function()
+					elem:write({}, {})
+				end, "prefix 'prefix' has 2 URIs defined on the same element; 'http://ns2' and 'http://ns1'")
 			end)
 
 		end)

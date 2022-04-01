@@ -17,4 +17,7 @@
         <tieske:b xmlns:tieske="http://new-tieske"/>
         <tieske:c/><!-- should remain "http://specified" -->
     </tieske:a>
+    <a xmlns:newns="new namespace"><!--define namespace ahead of using it-->
+        <newns:b>text</newns:b>
+    </a>
 </root>

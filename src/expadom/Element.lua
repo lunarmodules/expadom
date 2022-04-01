@@ -19,19 +19,14 @@ local format = string.format
 local escape = xmlutils.escape
 local DEFAULT_NS_KEY = constants.DEFAULT_NS_KEY
 local NIL_SENTINEL = constants.NIL_SENTINEL
+local DEFAULT_NAMESPACES = constants.DEFAULT_NAMESPACES
 
 
 --- Properties of the `Element` class, beyond the `Node` class
 -- @field tagName (string) the tag name for the element (readonly)
--- @field explicitNamespaces (table) a table holding namespace-URIs indexed by prefix
--- (or `constants.DEFAULT_NS_KEY` for the default namespace). This is additional to the
--- DOM2 spec, and will be used when calling `write`.
 -- @table properties
 local properties = {
 	tagName = { readonly = true },
-
-	-- Non DOM2 property
-	explicitNamespaces = { readonly = true },
 }
 
 
@@ -45,7 +40,6 @@ function methods:__init()
 	end
 
 	self.__prop_values.attributes = NamedNodeMap { parentNode = self }
-	self.__prop_values.explicitNamespaces = {}
 	return true
 end
 
@@ -67,15 +61,17 @@ do
 		revertNamespaces[prefix] = namespacesInScope[prefix] or NIL_SENTINEL
 		namespacesInScope[prefix] = namespaceURI
 
-		-- write namespace definition
-		if prefix == DEFAULT_NS_KEY then
-			buffer[#buffer+1] = ' xmlns="'..escape(namespaceURI)..'"'
-		else
-			buffer[#buffer+1] = ' xmlns:'..prefix..'="'..escape(namespaceURI)..'"'
+		if not DEFAULT_NAMESPACES[prefix] then
+			-- write namespace definition
+			if prefix == DEFAULT_NS_KEY then
+				buffer[#buffer+1] = ' xmlns="'..escape(namespaceURI)..'"'
+			else
+				buffer[#buffer+1] = ' xmlns:'..prefix..'="'..escape(namespaceURI)..'"'
+			end
 		end
 	end
 
-	--- exports the XML.
+	--- exports the XML (additional to DOM 2 spec).
 	--
 	-- Writing namespaces:
 	--
@@ -85,10 +81,10 @@ do
 	-- * Namespaces in use in this `Element` or any of its `Attribute`s will implicitly
 	-- be defined on the `Element` unless they are already in scope.
 	--
-	-- * Namespaces set in the `Element.explicitNamespaces` table will be defined on this
-	-- `Element` (if not already in scope). This allows to define a namespace on
+	-- * Namespaces set as attributes on this element will be defined on this
+	-- `Element`. This allows to define a namespace on
 	-- a higher level element (where it is not necessarily in use), to prevent many
-	-- duplicate definitions further down the tree.
+	-- duplicate definitions further down the tree. See `Element:defineNamespace`.
 	--
 	-- @name Element:write
 	-- @tparam array buffer an array to which the chunks can be added.
@@ -101,25 +97,34 @@ do
 
 		-- add namespaces
 		local revertNamespaces = {}
-		for prefix, namespaceURI in pairs(self.__prop_values.explicitNamespaces) do
-			writeNamespace(buffer, prefix, namespaceURI, namespacesInScope, revertNamespaces)
+
+		local non_ns_attribs = {}
+		local attributes = self.__prop_values.attributes
+		if attributes then
+			-- write the namespaces explicitly defined as attributes
+			for i = 1, attributes.n do
+				local attribute = attributes[i]
+				local props = attribute.__prop_values
+				if props.namespaceURI == constants.DEFAULT_NAMESPACES.xmlns then
+					writeNamespace(buffer, props.localName, attribute.value, namespacesInScope, revertNamespaces)
+				else
+					-- plain attribute, store for later
+					non_ns_attribs[#non_ns_attribs+1] = attribute
+				end
+			end
 		end
 		local namespaceURI = self.__prop_values.namespaceURI
 		if namespaceURI then
 			writeNamespace(buffer, self.__prop_values.prefix, namespaceURI, namespacesInScope, revertNamespaces)
 		end
 
-		-- add attributes
-		local attributes = self.__prop_values.attributes
-		if attributes then
-			for i = 1, attributes.n do
-				local attribute = attributes[i]
-				local namespaceURI = attribute.__prop_values.namespaceURI
-				if namespaceURI then
-					writeNamespace(buffer, attribute.__prop_values.prefix, namespaceURI, namespacesInScope, revertNamespaces)
-				end
-				attribute:write(buffer, namespacesInScope)
+		-- add non-namespace attributes
+		for i, attribute in ipairs(non_ns_attribs) do
+			local namespaceURI = attribute.__prop_values.namespaceURI
+			if namespaceURI then
+				writeNamespace(buffer, attribute.__prop_values.prefix, namespaceURI, namespacesInScope, revertNamespaces)
 			end
+			attribute:write(buffer, namespacesInScope)
 		end
 
 		-- add children
@@ -424,6 +429,32 @@ function methods:getElementsByTagNameNS(namespaceURI, localName)
 	assert(type(namespaceURI) == "string", "expected namespaceURI to be a string")
 	assert(type(localName) == "string", "expected localName to be a string")
 	return self:_getElementsByTagNameNS(namespaceURI, localName, NodeList())
+end
+
+
+--- Creates/updates an attribute that defines a namespace (additional to DOM 2 spec).
+-- Creates an attribute defining the specified namespace. If a defining attribute
+-- already exists, it will be updated. It will not check if the new definition
+-- collides with any implicitly defined namespace on the `Element` or on an `Attribute`.
+-- @tparam string namespaceURI the namespace URI to define a prefix for.
+-- @tparam[opt] string prefix The prefix to which to assign the `namespaceURI` value, or
+-- `constants.DEFAULT_NS_KEY` constant to set the default namespace. This defaults
+-- to `constants.DEFAULT_NS_KEY` if omitted.
+-- @name Element:defineNamespace
+-- @return the atribute that was created/updated.
+-- @usage
+-- -- defines attribute: 'xmlns:cool="http://some/namespace"' on the element
+-- local attr = elem:defineNamespace("http://some/namespace", "cool")
+--
+-- -- defines attribute: 'xmlns="http://default/namespace"' on the element
+-- local attr = elem:defineNamespace("http://default/namespace")
+function methods:defineNamespace(namespaceURI, prefix)
+	prefix = prefix or DEFAULT_NS_KEY
+	if DEFAULT_NAMESPACES[prefix] then
+		error(("prefix '%s' has a default namespaceURI and cannot be set"):format(prefix))
+	end
+	return self:setAttributeNS(DEFAULT_NAMESPACES.xmlns,
+		prefix ~= DEFAULT_NS_KEY and ("xmlns:" .. prefix) or "xmlns", namespaceURI)
 end
 
 

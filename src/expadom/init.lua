@@ -10,7 +10,7 @@ local constants = require "expadom.constants"
 local TYPES = constants.NODE_TYPES
 
 
-local SEPARATOR = "\1"
+local SEPARATOR = "?"--"\1"
 local DEFAULT_NS_KEY = constants.DEFAULT_NS_KEY
 
 local M = {}
@@ -160,24 +160,19 @@ do
 			local ctx = context_cache[parser]
 			local doc = ctx.doc
 			local qualifiedName, namespaceURI = split(elementName)
-			local elem
 
 			-- attach defined explicit namespaces on this element
 			local explicitNamespaces = ctx.explicitNamespaces
 			ctx.explicitNamespaces = {}
 
+
+			local elem
 			if namespaceURI then
 				elem = assert(doc:createElementNS(namespaceURI, qualifiedName))
-				elem.__prop_values.explicitNamespaces = explicitNamespaces
 				local prefix = elem.__prop_values.prefix
-				if prefix then
-					-- namespace is implicitly defined on this node, so remove
-					-- from explicit definitions
-					explicitNamespaces[prefix] = nil
-				end
+				explicitNamespaces[prefix or DEFAULT_NS_KEY] = nil -- remove since it's implicit
 			else
 				elem = assert(doc:createElement(qualifiedName))
-				elem.__prop_values.explicitNamespaces = explicitNamespaces
 			end
 
 			-- add attributes
@@ -185,14 +180,18 @@ do
 			for i, attrName in ipairs(attributes) do
 				local attrValue = attributes[attrName]
 				local qualifiedName, namespaceURI = split(attrName)
+
 				if namespaceURI then
 					local attr = assert(elem:setAttributeNS(namespaceURI, qualifiedName, attrValue))
-					-- namespace is implicitly defined on this attr, so remove
-					-- from explicit definitions
-					explicitNamespaces[attr.__prop_values.prefix] = nil
+					explicitNamespaces[attr.__prop_values.prefix] = nil -- remove since it's implicit
 				else
 					assert(elem:setAttribute(qualifiedName, attrValue))
 				end
+			end
+
+			-- add remaining namespace definitions as attributes
+			for prefix, namespaceURI in pairs(explicitNamespaces) do
+				assert(elem:defineNamespace(namespaceURI, prefix))
 			end
 
 			if ctx.node == doc then
@@ -215,7 +214,6 @@ do
 			else
 				assert(ctx.node:appendChild(elem))
 			end
-
 			ctx.node = elem
 		end,
 

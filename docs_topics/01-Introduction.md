@@ -1,6 +1,7 @@
 # expadom
 
-An [XML DOM Level 2 Core](https://www.w3.org/TR/DOM-Level-2-Core/) implementation in Lua,
+An [XML DOM Level 2 Core](https://www.w3.org/TR/DOM-Level-2-Core/) implementation in Lua
+(with some Level 3 additions),
 based on the [(Lua)Expat parser](https://github.com/lunarmodules/luaexpat).
 
 ## Parsing documents

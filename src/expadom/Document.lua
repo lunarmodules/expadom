@@ -26,10 +26,10 @@ local TYPES = constants.NODE_TYPES
 -- @field doctype the `DocumentType` associated with this Document (readonly)
 -- @field implementation the `DOMImplementation` from which the Document was created (readonly)
 -- @field documentElement the root `Element` object of the Document (readonly)
--- @field inputEncoding the input encoding at parse time (DOM level 3 property)
--- @field xmlEncoding the encoding in the document, always "UTF-8" (DOM level 3 property)
--- @field xmlStandalone whether the document is standalone (DOM level 3 property)
--- @field xmlVersion the xml version for the document, must be '1.0' (DOM level 3 property)
+-- @field inputEncoding the input encoding at parse time ([DOM level 3 property](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-inputEncoding), readonly)
+-- @field xmlEncoding the encoding in the document, always "UTF-8" ([DOM level 3 property](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-encoding), readonly)
+-- @field xmlStandalone whether the document is standalone ([DOM level 3 property](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-standalone))
+-- @field xmlVersion the xml version for the document, must be '1.0' ([DOM level 3 property](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-version))
 -- @table properties
 local properties = {
 	doctype = { readonly = true },
@@ -397,10 +397,41 @@ end
 --- Not implemented. Clones and imports the node, implements [importNode](https://www.w3.org/TR/DOM-Level-2-Core/#core-Core-Document-importNode).
 -- @tparam Node importedNode the `Node` to import from another `Document`.
 -- @tparam bool deep if `true` create a recursive copy.
--- @name Node:importNode
+-- @name Document:importNode
 -- @return the newly cloned and imported `Node`, or nil+err
 function methods:importNode(importedNode, deep)
 	error("--TODO: implement importNode")
+end
+
+
+--- Not implemented. Adopts a node (DOM 3 method) into the current document, implements [adoptNode](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-adoptNode).
+-- @tparam Node source the `Node` to adopt.
+-- @name Document:adoptNode
+-- @return the adopted `Node` or nil+err
+function methods:adoptNode(source)
+	error("--TODO: implement adoptNode")
+end
+
+
+--- Not implemented. Normalizes the document (DOM 3 method), implements [normalizeDocument](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-normalizeDocument).
+-- @tparam Node source the `Node` to adopt.
+-- @name Document:normalizeDocument
+-- @return the normalized `Document` or nil+err
+function methods:normalizeDocument()
+	error("--TODO: implement normalizeDocument")
+end
+
+
+--- Not implemented. Rename a node (DOM 3 method), implements [importNode](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-renameNode).
+-- @tparam Attr|Element n the `Attr` or `Element` node to rename.
+-- @tparam string namespaceURI the new namespaceUri.
+-- @tparam string qualifiedName the new name.
+-- @name Document:renameNode
+-- @return the updated `Node` or nil+err
+function methods:renameNode(n, namespaceURI, qualifiedName)
+	-- how to update explicitNamespaces?? needed?
+	-- will it ever create a new node? or this implementation always updates?
+	error("--TODO: implement renameNode")
 end
 
 

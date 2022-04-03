@@ -39,6 +39,84 @@ describe("Document:", function()
 			assert.equal(nil, doc.nodeValue)
 		end)
 
+
+		it("reports proper inputEncoding", function()
+			local doc = Document {
+				inputEncoding = "anything",
+			}
+			assert.equal("anything", doc.inputEncoding)
+		end)
+
+
+		describe("xmlEncoding", function()
+
+			it("defaults to 'UTF-8'", function()
+				local doc = Document {}
+				assert.equal("UTF-8", doc.xmlEncoding)
+			end)
+
+			it("requires 'UTF-8'", function()
+				assert.has.error(function()
+					Document { xmlEncoding = "UTF-16" }
+				end, "only UTF-8 is supported as xmlEncoding, got: UTF-16")
+			end)
+
+		end)
+
+
+
+		describe("xmlStandalone", function()
+
+			it("properly reports value", function()
+				local doc = Document { xmlStandalone = false }
+				assert.equal(false, doc.xmlStandalone)
+			end)
+
+			it("accepts boolean and nil when set", function()
+				local doc = Document {}
+				doc.xmlStandalone = true
+				assert.equal(true, doc.xmlStandalone)
+				doc.xmlStandalone = false
+				assert.equal(false, doc.xmlStandalone)
+				doc.xmlStandalone = nil
+				assert.equal(nil, doc.xmlStandalone)
+			end)
+
+			it("requires boolean or nil as value", function()
+				assert.has.error(function()
+					Document { xmlStandalone = 123 }
+				end, "xmlStandalone must be a boolean or nil")
+			end)
+
+		end)
+
+
+
+		describe("xmlVersion", function()
+
+			it("defaults to '1.0'", function()
+				local doc = Document {}
+				assert.equal("1.0", doc.xmlVersion)
+			end)
+
+
+			it("accepts '1.0'", function()
+				assert.has.no.error(function()
+					Document { xmlVersion = "1.0" }
+				end)
+			end)
+
+
+			it("only accepts '1.0' when set", function()
+				assert.has.error(function()
+					Document { xmlVersion = "123" }
+				end, "xmlVersion must be '1.0'")
+			end)
+
+		end)
+
+
+
 		describe("documentElement", function()
 
 			it("returns the single Element node", function()
@@ -551,7 +629,11 @@ describe("Document:", function()
 				doc:appendChild(doc:createComment("trailing comment"))
 
 				assert.same({
-					'<?xml version="1.0" encoding="UTF-8" ?>\n',
+					'<?xml version="',
+					'1.0',
+					'" encoding="',
+					'UTF-8',
+					'" ?>\n',
 					'<?piname pi data?>',
 					'\n',
 					'<!--comment-->',
@@ -565,8 +647,21 @@ describe("Document:", function()
 			end)
 
 
-			pending("writes 'standalone' in xml declaration", function()
-				-- TODO: implement
+			it("writes 'standalone' in xml declaration", function()
+				local doc = assert(DOM:createDocument(nil, "root"))
+				doc.xmlStandalone = true
+				assert.same({
+					'<?xml version="',
+					'1.0',
+					'" encoding="',
+					'UTF-8',
+					'" standalone="',
+					'yes',
+					'" ?>\n',
+					'<root',
+					'/>',
+					'\n',
+				}, doc:write())
 			end)
 
 		end)

@@ -67,6 +67,7 @@ end
 -- @field prefix (string) the namespace prefix
 -- @field previousSibling the previous sibling child `Node` from the parent `Node` (readonly)
 -- @field qualifiedName (string) the nodes' qualified name, additional to the DOM2 spec (readonly)
+-- @field textContent the text content of this node and its descendants ([DOM level 3 property](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-textContent), readonly)
 -- @table properties
 local properties = {
 	attributes = { readonly = true },
@@ -184,6 +185,12 @@ local properties = {
 		end
 	},
 	qualifiedName = { readonly = true }, -- non DOM convenience property
+	textContent = {
+		readonly = true,
+		get = function(self)
+			error("-- TODO: implement getting textContent property")
+		end,
+	}
 }
 
 local methods = {}
@@ -634,6 +641,41 @@ function methods:insertChildAtIndex(newChild, index)
 	return newChild
 end
 
+
+--- Not implemented. Checks equality, not sameness (DOM 3 method), implements [isEqualNode](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-isEqualNode).
+-- @name Node:isEqualNode
+-- @tparam Node arg the `Node` to compare with.
+-- @return boolean
+function methods:isEqualNode(arg)
+	error("--TODO: implement isEqualNode")
+end
+
+
+--- Not implemented. Look up the prefix associated to the given namespace URI (DOM 3 method), implements [lookupPrefix](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-lookupNamespacePrefix).
+-- @name Node:lookupPrefix
+-- @tparam string namespaceURI the namespaceUri to lookup.
+-- @return the prefix, or nil if not found
+function methods:lookupPrefix(namespaceURI)
+	error("--TODO: implement lookupPrefix")
+end
+
+
+--- Not implemented. Checks if the specified namespaceURI is the default namespace or not (DOM 3 method), implements [isDefaultNamespace](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-isDefaultNamespace).
+-- @name Node:isDefaultNamespace
+-- @tparam string namespaceURI the namespaceUri to check.
+-- @return boolean
+function methods:isDefaultNamespace(namespaceURI)
+	error("--TODO: implement isDefaultNamespace")
+end
+
+
+--- Not implemented. Look up the namespace URI associated to the given prefix (DOM 3 method), implements [lookupNamespaceURI](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-lookupNamespaceURI).
+-- @name Node:lookupNamespaceURI
+-- @tparam string prefix the prefix to lookup.
+-- @return the namespace URI, or nil if not found
+function methods:lookupNamespaceURI(prefix)
+	error("--TODO: implement lookupNamespaceURI")
+end
 
 
 -- no tail call in case of errors/stacktraces

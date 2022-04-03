@@ -16,7 +16,23 @@ local ERRORS = constants.ERRORS
 local TYPES = constants.NODE_TYPES
 
 
+--- Properties of the `Text` class, beyond the `Node` class.
+-- @field wholeText the whole text of the node and adjacent nodes ([DOM level 3 property](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Text3-wholeText), readonly)
+-- @field isElementContentWhitespace boolean if the text is whitespace ([DOM level 3 property](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Text3-isElementContentWhitespace), readonly)
+-- @table properties
 local properties = {
+	wholeText = {
+		readonly = true,
+		get = function(self)
+			error("-- TODO: implement getting wholeText property")
+		end,
+	},
+	isElementContentWhitespace = {
+		readonly = true,
+		get = function(self)
+			error("-- TODO: implement getting isElementContentWhitespace property")
+		end,
+	}
 }
 
 local methods = {}
@@ -71,6 +87,15 @@ function methods:splitText(offset)
 		end
 	end
 	return newNode
+end
+
+
+--- Not implemented. Replaces existing text nodes (DOM 3 method), implements [replaceWholeText](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Text3-replaceWholeText).
+-- @name Text:replaceWholeText
+-- @tparam string content the new text content.
+-- @return the new `Text` node, or nil+err
+function methods:replaceWholeText(content)
+	error("--TODO: implement replaceWholeText")
 end
 
 

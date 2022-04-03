@@ -42,9 +42,9 @@ do
 		-- doc declaration
 		XmlDecl = function(parser, version, encoding, standalone)
 			local doc = context_cache[parser].doc
-			doc.xml_version = version
-			doc.xml_encoding = encoding
-			doc.xml_standalone = standalone
+			doc.xmlVersion = version
+			doc.xmlStandalone = standalone
+			doc.__prop_values.inputEncoding = encoding
 		end,
 
 		-- document type declaration

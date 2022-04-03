@@ -26,10 +26,29 @@ local TYPES = constants.NODE_TYPES
 -- @field doctype the `DocumentType` associated with this Document (readonly)
 -- @field implementation the `DOMImplementation` from which the Document was created (readonly)
 -- @field documentElement the root `Element` object of the Document (readonly)
+-- @field inputEncoding the input encoding at parse time (DOM level 3 property)
+-- @field xmlEncoding the encoding in the document, always "UTF-8" (DOM level 3 property)
+-- @field xmlStandalone whether the document is standalone (DOM level 3 property)
+-- @field xmlVersion the xml version for the document, must be '1.0' (DOM level 3 property)
 -- @table properties
 local properties = {
 	doctype = { readonly = true },
 	implementation = { readonly = true },
+	inputEncoding = { readonly = true },
+	xmlEncoding = { readonly = true },
+	xmlStandalone = {
+		set = function(self, value)
+			assert(value == true or value == false or value == nil,
+				"xmlStandalone must be a boolean or nil")
+			self.__prop_values.xmlStandalone = value
+		end
+	},
+	xmlVersion = {
+		set = function(self, value)
+			assert(value == "1.0", "xmlVersion must be '1.0'")
+			self.__prop_values.xmlVersion = value
+		end
+	},
 	documentElement = {
 		readonly = true,
 		get = function(self)
@@ -48,14 +67,26 @@ local properties = {
 local methods = {}
 
 function methods:__init()
-	self.__prop_values.nodeType = TYPES.DOCUMENT_NODE
+	local props = self.__prop_values
+	props.nodeType = TYPES.DOCUMENT_NODE
 
 	local ok, err = Node.__init(self)
 	if not ok then
 		return ok, err
 	end
 
-	self.__prop_values.nodeName = "#document"
+	props.nodeName = "#document"
+
+	-- invoke property setters
+	self.xmlVersion = props.xmlVersion or "1.0"
+	self.xmlStandalone = props.xmlStandalone
+
+	if props.xmlEncoding == nil then
+		props.xmlEncoding = "UTF-8"
+	end
+	assert(props.xmlEncoding == "UTF-8", "only UTF-8 is supported as xmlEncoding, got: "
+		.. tostring(props.xmlEncoding))
+
 	return true
 end
 
@@ -70,7 +101,19 @@ function methods:write(buffer, namespacesInScope)
 	buffer = buffer or {}
 	namespacesInScope =  namespacesInScope or {}
 
-	buffer[#buffer+1] = '<?xml version="1.0" encoding="UTF-8" ?>\n'
+	local i = #buffer + 1
+	buffer[i] = '<?xml version="'
+	buffer[i+1] = self.__prop_values.xmlVersion
+	buffer[i+2] = '" encoding="'
+	buffer[i+3] = self.__prop_values.xmlEncoding
+	local standalone = self.__prop_values.xmlStandalone
+	if standalone == nil then
+		buffer[i+4] = '" ?>\n'
+	else
+		buffer[i+4] = '" standalone="'
+		buffer[i+5] = standalone and "yes" or "no"
+		buffer[i+6] = '" ?>\n'
+	end
 	local childNodes = self.__prop_values.childNodes
 	for _, child in ipairs(childNodes) do
 		child:write(buffer, namespacesInScope)

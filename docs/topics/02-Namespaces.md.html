@@ -30,6 +30,11 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
+<h2>Contents</h2>
+<ul>
+<li><a href="#Implicit_and_explicit_namespace_definitions">Implicit and explicit namespace definitions </a></li>
+<li><a href="#Caveats">Caveats </a></li>
+</ul>
 
 
 <h2>Topics</h2>
@@ -70,9 +75,10 @@
 
 <h1>Namespaces</h1>
 
-<p>Namesapces are created using the standard methods available in the DOM Core
+<p>Namespaces are created using the standard methods available in the DOM Core
 specification, for creating attributes and elements. See <a href="../classes/Document.html#Document:createElementNS">Document.createElementNS</a>,
-<a href="../classes/Document.html#Document:createAttributeNS">Document.createAttributeNS</a>, and <a href="../classes/Element.html#Element:setAttributeNS">Element.setAttributeNS</a>.</p>
+<a href="../classes/Document.html#Document:createAttributeNS">Document.createAttributeNS</a>, and <a href="../classes/Element.html#Element:setAttributeNS">Element.setAttributeNS</a>. A convenience method is
+available for creating attributes to define a namespace; <a href="../classes/Element.html#Element:defineNamespace">Element:defineNamespace</a>.</p>
 
 <p>In this Lua implementation the <code>namespaceURI</code>, <code>localName</code>, and <code>prefix</code> properties
 are tracked on the Nodes. Not in Attribute nodes in Elements. This means that there
@@ -86,8 +92,14 @@ will be no attributes in the document tree for defining namespaces.</p>
 
 
 <p>The top-level <code>&quot;node&quot;</code> element defines 3 attributes, of which 2 are namespace declarations.
-Yet in the document object there will only be 1 attribute; <code>just_attribute</code> since
-the definitions are reflected in the properties of the nodes.</p>
+Yet in the document object there will only be 2 attributes; <code>xmlns:lua</code>, and <code>just_attribute</code>
+since the definition of the default namespace is reflected in the properties of the <code>node</code>
+Element. It is 'implicit' in the document.</p>
+
+<hr/>
+
+<p><a name="Implicit_and_explicit_namespace_definitions"></a></p>
+<h2>Implicit and explicit namespace definitions</h2>
 
 <p>If the document would be parsed into a <code>doc</code> variable then;</p>
 
@@ -97,22 +109,30 @@ the definitions are reflected in the properties of the nodes.</p>
 </span><span class="global">print</span>(elem.prefix)               <span class="comment">--&gt; nil
 </span><span class="global">print</span>(elem.namespaceURI)         <span class="comment">--&gt; "default_ns"
 </span><span class="global">print</span>(elem.attributes.length)    <span class="comment">--&gt; 1
-</span><span class="keyword">local</span> source = elem.childNodes[<span class="number">2</span>]
+</span><span class="keyword">local</span> source = elem.childNodes[<span class="number">1</span>]
 <span class="global">print</span>(source.localName)          <span class="comment">--&gt; "source"
-</span><span class="global">print</span>(source.prefix)             <span class="comment">--&gt; lua
-</span><span class="global">print</span>(source.namespaceURI)       <span class="comment">--&gt; "https://lua.org"</span>
+</span><span class="global">print</span>(source.prefix)             <span class="comment">--&gt; "lua"
+</span><span class="global">print</span>(source.namespaceURI)       <span class="comment">--&gt; "https://lua.org"
+</span><span class="keyword">local</span> source = elem.childNodes[<span class="number">2</span>]
+<span class="global">print</span>(source.localName)          <span class="comment">--&gt; "lua"
+</span><span class="global">print</span>(source.prefix)             <span class="comment">--&gt; "xmlns"
+</span><span class="global">print</span>(source.namespaceURI)       <span class="comment">--&gt; "http://www.w3.org/2000/xmlns/"</span>
 </pre>
 
+<p>The attribute <code>xmlns:lua</code> defines the 'explicit' namespace for <code>&apos;lua&apos;</code>. This namespace
+is implictly defined on the <code>&apos;lua:source&apos;</code> Element, but since it is defined ahead of
+use on the <code>&apos;node&apos;</code> Element, it is explicit.</p>
 
 <p>When writing an Xml document, the namespace attributes will implicitly be added
 to the elements where they are needed. To explicitly define namespaces they can
-be added to <code>explicitNamespaces</code> in <a href="../classes/Element.html#Element.properties">Element.properties</a>.</p>
+be added as namespace definition attributes to an <a href="../classes/Element.html#">Element</a> in the same way.</p>
 
-<p>As an example, here's the same document ceated from code;</p>
+<p>As an example, here's the same document created from code;</p>
 
 <pre>
 <span class="keyword">local</span> DOM = <span class="global">require</span>(<span class="string">"expadom.DOMImplementation"</span>)()
 doc = DOM:createDocument(<span class="string">"default_ns"</span>, <span class="string">"node"</span>)
+doc.documentElement:setAttribute(<span class="string">"just_attribute"</span>, <span class="string">"value"</span>)
 <span class="keyword">local</span> source = doc:createElementNS(<span class="string">"https://lua.org"</span>, <span class="string">"lua:source"</span>)
 doc.documentElement:appendChild(doc:createTextNode(<span class="string">"\n    "</span>))
 doc.documentElement:appendChild(source)
@@ -123,28 +143,39 @@ source:appendChild(doc:createTextNode(<span class="string">"print [[hello world]
 
 <p>Output:</p>
 <pre><code> &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
- &lt;node xmlns="default_ns"&gt;
+ &lt;node xmlns="default_ns" just_attribute="value"&gt;
      &lt;lua:source xmlns:lua="https://lua.org"&gt;print [[hello world]]&lt;/lua:source&gt;
  &lt;/node&gt;
 </code></pre>
 
 
 <p>The output however has the namespace declaration moved to the <code>&quot;lua:source&quot;</code>
-element, since that is where it is first used.</p>
+element, since that is where it is first used. So it is defined implicitly.</p>
 
-<p>If an explicit declaration is added to the root element (called <code>&quot;node&quot;</code>), like so:</p>
+<p>If an 'explicit' declaration is added to the root element (called <code>&quot;node&quot;</code>), like so:</p>
 
 <pre>
-doc.documentElement.explicitNamespaces[<span class="string">"lua"</span>] = <span class="string">"https://lua.org"</span>
+doc.documentElement:defineNamespace(<span class="string">"https://lua.org"</span>, <span class="string">"lua"</span>)
 <span class="global">print</span>(<span class="global">table</span>.concat(doc:write()))
 </pre>
 
 <p>Then the output becomes:</p>
 <pre><code> &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
- &lt;node xmlns:lua="https://lua.org" xmlns="default_ns"&gt;
+ &lt;node xmlns='default_ns' xmlns:lua='https://lua.org' just_attribute='value'&gt;
      &lt;lua:source&gt;print [[hello world]]&lt;/lua:source&gt;
  &lt;/node&gt;
 </code></pre>
+
+
+<hr/>
+
+<p><a name="Caveats"></a></p>
+<h2>Caveats</h2>
+
+<p>When adding namespaces either explicit or implicit, there are no checks to see if they
+collide with existing definitions. So it can happen that the same <code>prefix</code> has 2
+different <code>namespaceURI</code>'s set. In that case, writing the document will fail with
+an error.</p>
 
 
 
@@ -152,7 +183,7 @@ doc.documentElement.explicitNamespaces[<span class="string">"lua"</span>] = <spa
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-03-21 10:24:39 </i>
+<i style="float:right;">Last updated 2022-04-05 21:58:16 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

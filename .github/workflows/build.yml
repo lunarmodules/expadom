@@ -36,8 +36,6 @@ jobs:
         git config --global url.https://github.com/.insteadOf git://github.com/
         luarocks install busted
         luarocks install luacov-coveralls
-        # waiting for LuaExpat 1.4 release, for now install master branch
-        luarocks install https://raw.githubusercontent.com/lunarmodules/luaexpat/master/luaexpat-dev-1.rockspec
 
     - name: build
       run: |

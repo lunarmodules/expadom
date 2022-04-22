@@ -28,7 +28,7 @@ root:appendChild(doc:createTextNode("hello world"))
 
 ## Good to know
 
-* Namespaces are tracked on a per Node basis, not in Attributes, see `Namespaces`.
+* Namespaces are tracked on a per Node basis, not in Attributes, see [`Namespaces`](02-Namespaces.md.html).
 * This is a Lua implementation, so any 0-based indices mentioned in the DOM Level
   2 specification will be 1-based in this implementation.
 * The spec defines "dynamic", and readonly properties, like `Node.nextSibling` for

@@ -9,6 +9,11 @@
 An [XML DOM Level 2 Core](https://www.w3.org/TR/DOM-Level-2-Core/) implementation in Lua,
 based on the [(Lua)Expat parser](https://github.com/lunarmodules/luaexpat).
 
+## Status
+
+This library is under early development and does not have everything implemented
+yet. Scan the code for `"TODO:"` to see what is still to be done.
+
 ## Synopsis
 
 ```lua
@@ -51,12 +56,13 @@ Source code and downloads are available from the [Github project page](https://g
 ### Dependencies
 
 Expadom depends on the following packages:
+
 * [LuaExpat](https://github.com/lunarmodules/luaexpat) for parsing XML. This requires
-  that [Expat](https://github.com/libexpat/libexpat) itself is also installed.
+  that [libexpat](https://github.com/libexpat/libexpat) itself is also installed.
 * The Lua module [compat53](https://github.com/keplerproject/lua-compat-5.3) is required
   for UTF-8 support on Lua versions lacking the `utf8` module (pre Lua 5.3).
 
-When installing through LuaRocks, `Expat` must be installed manually, the other
+When installing through LuaRocks, `libexpat` must be installed manually, the other
 dependencies will be dealt with by LuaRocks.
 
 ## License & Copyright
@@ -65,4 +71,6 @@ The project is licensed under the [MIT License](https://github.com/lunarmodules/
 
 ## History
 
-none...
+#### 22-Apr-2022 0.1.0 Initial release
+
+* Most of the DOM level 2 has been implemented

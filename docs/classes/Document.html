@@ -32,7 +32,6 @@
 
 <h2>Contents</h2>
 <ul>
-<li><a href="#Functions">Functions</a></li>
 <li><a href="#Tables">Tables</a></li>
 <li><a href="#Methods">Methods</a></li>
 </ul>
@@ -79,13 +78,6 @@
  and <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1950641247">Node</a> interfaces.</p>
 
 
-<h2><a href="#Functions">Functions</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#Node:importNode">Node:importNode (importedNode, deep)</a></td>
-	<td class="summary">Not implemented.</td>
-	</tr>
-</table>
 <h2><a href="#Tables">Tables</a></h2>
 <table class="function_list">
 	<tr>
@@ -95,6 +87,10 @@
 </table>
 <h2><a href="#Methods">Methods</a></h2>
 <table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Document:adoptNode">Document:adoptNode (source)</a></td>
+	<td class="summary">Not implemented.</td>
+	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Document:createAttribute">Document:createAttribute (name)</a></td>
 	<td class="summary">Creates a plain <a href="../classes/Attribute.html#">Attribute</a> node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-1084891198">createAttribute</a>.</td>
@@ -148,6 +144,18 @@
 	<td class="summary">Returns a list of children matching the namespace, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-ID-getElBTNNS">getElementsByTagNameNS</a>.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#Document:importNode">Document:importNode (importedNode, deep)</a></td>
+	<td class="summary">Not implemented.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:normalizeDocument">Document:normalizeDocument (source)</a></td>
+	<td class="summary">Not implemented.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Document:renameNode">Document:renameNode (n, namespaceURI, qualifiedName)</a></td>
+	<td class="summary">Not implemented.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#Document:write">Document:write ([buffer[, namespacesInScope]])</a></td>
 	<td class="summary">exports the XML.</td>
 	</tr>
@@ -157,40 +165,6 @@
 <br/>
 
 
-    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
-
-    <dl class="function">
-    <dt>
-    <a name = "Node:importNode"></a>
-    <strong>Node:importNode (importedNode, deep)</strong>
-    </dt>
-    <dd>
-    Not implemented.  Clones and imports the node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Core-Document-importNode">importNode</a>.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">importedNode</span>
-            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
-         the <a href="../classes/Node.html#">Node</a> to import from another <a href="../classes/Document.html#">Document</a>.
-        </li>
-        <li><span class="parameter">deep</span>
-            <span class="types"><span class="type">bool</span></span>
-         if <code>true</code> create a recursive copy.
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        the newly cloned and imported <a href="../classes/Node.html#">Node</a>, or nil+err
-    </ol>
-
-
-
-
-</dd>
-</dl>
     <h2 class="section-header "><a name="Tables"></a>Tables</h2>
 
     <dl class="function">
@@ -213,6 +187,18 @@
         <li><span class="parameter">documentElement</span>
          the root <a href="../classes/Element.html#">Element</a> object of the Document (readonly)
         </li>
+        <li><span class="parameter">inputEncoding</span>
+         the input encoding at parse time (<a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-inputEncoding">DOM level 3 property</a>, readonly)
+        </li>
+        <li><span class="parameter">xmlEncoding</span>
+         the encoding in the document, always "UTF-8" (<a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-encoding">DOM level 3 property</a>, readonly)
+        </li>
+        <li><span class="parameter">xmlStandalone</span>
+         whether the document is standalone (<a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-standalone">DOM level 3 property</a>)
+        </li>
+        <li><span class="parameter">xmlVersion</span>
+         the xml version for the document, must be '1.0' (<a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-version">DOM level 3 property</a>)
+        </li>
     </ul>
 
 
@@ -224,6 +210,32 @@
     <h2 class="section-header "><a name="Methods"></a>Methods</h2>
 
     <dl class="function">
+    <dt>
+    <a name = "Document:adoptNode"></a>
+    <strong>Document:adoptNode (source)</strong>
+    </dt>
+    <dd>
+    Not implemented.  Adopts a node (DOM 3 method) into the current document, implements <a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-adoptNode">adoptNode</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the <a href="../classes/Node.html#">Node</a> to adopt.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the adopted <a href="../classes/Node.html#">Node</a> or nil+err
+    </ol>
+
+
+
+
+</dd>
     <dt>
     <a name = "Document:createAttribute"></a>
     <strong>Document:createAttribute (name)</strong>
@@ -576,6 +588,96 @@
 
 </dd>
     <dt>
+    <a name = "Document:importNode"></a>
+    <strong>Document:importNode (importedNode, deep)</strong>
+    </dt>
+    <dd>
+    Not implemented.  Clones and imports the node, implements <a href="https://www.w3.org/TR/DOM-Level-2-Core/#core-Core-Document-importNode">importNode</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">importedNode</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the <a href="../classes/Node.html#">Node</a> to import from another <a href="../classes/Document.html#">Document</a>.
+        </li>
+        <li><span class="parameter">deep</span>
+            <span class="types"><span class="type">bool</span></span>
+         if <code>true</code> create a recursive copy.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the newly cloned and imported <a href="../classes/Node.html#">Node</a>, or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:normalizeDocument"></a>
+    <strong>Document:normalizeDocument (source)</strong>
+    </dt>
+    <dd>
+    Not implemented.  Normalizes the document (DOM 3 method), implements <a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-normalizeDocument">normalizeDocument</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">source</span>
+            <span class="types"><a class="type" href="../classes/Node.html#">Node</a></span>
+         the <a href="../classes/Node.html#">Node</a> to adopt.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the normalized <a href="../classes/Document.html#">Document</a> or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Document:renameNode"></a>
+    <strong>Document:renameNode (n, namespaceURI, qualifiedName)</strong>
+    </dt>
+    <dd>
+    Not implemented.  Rename a node (DOM 3 method), implements <a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Document3-renameNode">importNode</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">n</span>
+            <span class="types"><span class="type">Attr</span> or <a class="type" href="../classes/Element.html#">Element</a></span>
+         the <code>Attr</code> or <a href="../classes/Element.html#">Element</a> node to rename.
+        </li>
+        <li><span class="parameter">namespaceURI</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the new namespaceUri.
+        </li>
+        <li><span class="parameter">qualifiedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the new name.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the updated <a href="../classes/Node.html#">Node</a> or nil+err
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "Document:write"></a>
     <strong>Document:write ([buffer[, namespacesInScope]])</strong>
     </dt>
@@ -615,7 +717,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-04-05 21:58:16 </i>
+<i style="float:right;">Last updated 2022-04-22 13:38:32 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

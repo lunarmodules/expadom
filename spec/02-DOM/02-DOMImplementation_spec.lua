@@ -53,12 +53,13 @@ describe("DOMImplementation:", function()
 
 		it("creates a new instance", function()
 			local doctype = assert(DOM:createDocumentType("prefix:name", "pubid", "sysid"))
-			local doc = assert(DOM:createDocument("http://example.dev/some/path", "ns:root", doctype))
+			local doc, root = assert(DOM:createDocument("http://example.dev/some/path", "ns:root", doctype))
 
 			assert(Class.is_instance_of(Document, doc))
 
 			assert.equal(DOM, doc.implementation)
 			assert.equal(doctype, doc.doctype)
+			assert.equal(root, doc.documentElement)
 			assert.equal("ns", doc.documentElement.prefix)
 			assert.equal("root", doc.documentElement.localName)
 			assert.equal("ns:root", doc.documentElement.tagName)

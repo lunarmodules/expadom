@@ -21,8 +21,7 @@ can be used to create all sorts of children and build the document;
 
 ```lua
 local DOM = require("expadom.DOMImplementation")()
-local doc = DOM:createDocument(nil, "root")
-local root = doc.documentElement
+local doc, root = DOM:createDocument(nil, "root")
 root:appendChild(doc:createTextNode("hello world"))
 ```
 

@@ -26,15 +26,16 @@ end
 
 
 --- Creates a new Document instance, implements [createDocument](https://www.w3.org/TR/DOM-Level-2-Core/#core-Level-2-Core-DOM-createDocument).
+-- In addition to the Core spec, it also returns a second return value, the `documentElement` created.
 -- @tparam string|nil namespaceURI (required if the `qualifiedName` has a prefix)
 -- @tparam string qualifiedName the `tagName` of the top element, can have a prefix.
 -- @tparam[opt] DocumentType doctype a DocumentType instance.
--- @return a new Document instance
+-- @return a new Document instance + the `documentElement`
 -- @usage
 -- local DOM = require("expadom.DOMImplementation")()  -- create an instance
--- local doc1 = DOM:createDocument(nil, "root")                       -- plain root element
--- local doc2 = DOM:createDocument("http://namespace", "prefix:root") -- namespaced root element
--- local doc3 = DOM:createDocument("http://namespace", "root")        -- root element with default namespace
+-- local doc1, root1 = DOM:createDocument(nil, "root")                       -- plain root element
+-- local doc2, root2 = DOM:createDocument("http://namespace", "prefix:root") -- namespaced root element
+-- local doc3, root3 = DOM:createDocument("http://namespace", "root")        -- root element with default namespace
 function methods:createDocument(namespaceURI, qualifiedName, doctype)
 	if doctype ~= nil then
 		if not Class.is_instance_of(DocumentType, doctype) then
@@ -68,7 +69,7 @@ function methods:createDocument(namespaceURI, qualifiedName, doctype)
 	end
 
 	doc:appendChild(root_elem)
-	return doc
+	return doc, root_elem
 end
 
 

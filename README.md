@@ -18,8 +18,7 @@ yet. Scan the code for `"TODO:"` to see what is still to be done.
 
 ```lua
 local DOM = require("expadom.DOMImplementation")()
-local doc = DOM:createDocument(nil, "root")
-local root = doc.documentElement
+local doc, root = DOM:createDocument(nil, "root")
 root:appendChild(doc:createComment("let's create an address list"))
 local list = doc:createElement("addresses")
 list:setAttribute("country", "Netherlands")
@@ -70,6 +69,12 @@ dependencies will be dealt with by LuaRocks.
 The project is licensed under the [MIT License](https://github.com/lunarmodules/expadom/blob/main/LICENSE)
 
 ## History
+
+#### unreleased
+
+* Feat: return root element as well when creating a document (DOMimplementation)
+  [#5](https://github.com/lunarmodules/expadom/pull/5)
+
 
 #### 22-Apr-2022 0.1.0 Initial release
 

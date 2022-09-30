@@ -18,7 +18,8 @@ yet. Scan the code for `"TODO:"` to see what is still to be done.
 
 ```lua
 local DOM = require("expadom.DOMImplementation")()
-local doc, root = DOM:createDocument(nil, "root")
+local doc = DOM:createDocument(nil, "root")
+local root = doc.documentElement
 root:appendChild(doc:createComment("let's create an address list"))
 local list = doc:createElement("addresses")
 list:setAttribute("country", "Netherlands")

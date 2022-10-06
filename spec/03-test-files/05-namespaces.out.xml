@@ -7,6 +7,9 @@
         <tieske:c xmlns:tieske="http://specified">
             <d xmlns="http://default-d"/>
         </tieske:c>
+        <default-cleared xmlns="">
+            <this-is-it attr="a value"/>
+        </default-cleared>
     </a>
     <!-- namespaced attribute -->
     <a xmlns:tieske="http://specified" tieske:attr="xml for president">

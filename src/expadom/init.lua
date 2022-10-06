@@ -165,15 +165,9 @@ do
 			local explicitNamespaces = ctx.explicitNamespaces
 			ctx.explicitNamespaces = {}
 
-
-			local elem
-			if namespaceURI then
-				elem = assert(doc:createElementNS(namespaceURI, qualifiedName))
-				local prefix = elem.__prop_values.prefix
-				explicitNamespaces[prefix or DEFAULT_NS_KEY] = nil -- remove since it's implicit
-			else
-				elem = assert(doc:createElement(qualifiedName))
-			end
+			local elem = assert(doc:createElementNS(namespaceURI or "", qualifiedName))
+			local prefix = elem.__prop_values.prefix
+			explicitNamespaces[prefix or DEFAULT_NS_KEY] = nil -- remove since it's implicit
 
 			-- add attributes
 			-- TODO: deal with default attributes

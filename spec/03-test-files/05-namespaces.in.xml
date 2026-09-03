@@ -9,6 +9,9 @@
         <tieske:c xmlns:tieske="http://specified">
             <d xmlns="http://default-d"/>
         </tieske:c>
+        <default-cleared xmlns="">
+            <this-is-it attr="a value"/>
+        </default-cleared>
     </a>
     <!-- namespaced attribute -->
     <a xmlns:tieske="http://specified" tieske:attr="xml for president">
@@ -19,7 +22,7 @@
         <tieske:b xmlns:tieske="http://new-tieske"/>
         <tieske:c/><!-- should remain "http://specified" -->
     </tieske:a>
-    <a xmlns:newns="new namespace"><!--define namespace ahead of using it-->
+    <a xmlns:newns="https://new-ns"><!--define namespace ahead of using it-->
         <newns:b>text</newns:b>
     </a>
 </root>
